@@ -41,6 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\IPHttpApplication.cs" />
+    <Compile Include="HttpClient.cs" />
+    <Compile Include="HttpServer.cs" />
+    <Compile Include="HttpServerState.cs" />
+    <Compile Include="HttpServerUtility.cs" />
+    <Compile Include="HttpTimeoutManager.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

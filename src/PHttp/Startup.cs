@@ -10,6 +10,7 @@ namespace PHttp
 {
     public class Startup
     {
+
         public static List<Application.IPHttpApplication> LoadApps(string path)
         {
             List<Application.IPHttpApplication> apps = new List<Application.IPHttpApplication>();
@@ -18,11 +19,14 @@ namespace PHttp
             foreach (FileInfo fls in fis)
             {
                 var assembly = Assembly.LoadFrom(fls.FullName);
-                var myObjects = (from t in assembly.GetTypes()
-                                 where t.GetInterfaces().Contains(typeof(Application.IPHttpApplication))
-                                 select (Application.IPHttpApplication)Activator.CreateInstance(t)).ToList();
 
-                apps = apps.Concat(myObjects).ToList();
+                foreach(var type in assembly.GetTypes())
+                {
+                    if (type != typeof(Application.IPHttpApplication) && typeof(Application.IPHttpApplication).IsAssignableFrom(type))
+                    {
+                        apps.Add((Application.IPHttpApplication)Activator.CreateInstance(type));
+                    }
+                }
             }
 
             foreach(var app in apps)
