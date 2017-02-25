@@ -1,2 +1,4 @@
 # sharpener-framework
-C# WebServer
+C# WebServer made from scratch
+
+Work in progres...
