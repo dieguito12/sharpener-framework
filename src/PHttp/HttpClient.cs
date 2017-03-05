@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PHttp
 {
+    /// <summary>
+    /// Representative class of a client in an http connection.
+    /// </summary>
     public class HttpClient
     {
 

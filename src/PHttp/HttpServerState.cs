@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PHttp
 {
+    /// <summary>
+    /// Enum that has the different states of the server.
+    /// </summary>
     public enum HttpServerState
     {
         Stopped = 0,
