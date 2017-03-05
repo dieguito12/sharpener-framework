@@ -8,9 +8,16 @@ using System.IO;
 
 namespace PHttp
 {
+    /// <summary>
+    /// Class that performs the initializing processes of the server
+    /// </summary>
     public class Startup
     {
-
+        /// <summary>
+        /// Load all apps of the web server that implements the IPHttpApplication interface.
+        /// </summary>
+        /// <param name="path">Path of the dll file where all the apps are.</param>
+        /// <returns>A list of the instances of all applications.</returns>
         public static List<Application.IPHttpApplication> LoadApps(string path)
         {
             List<Application.IPHttpApplication> apps = new List<Application.IPHttpApplication>();
