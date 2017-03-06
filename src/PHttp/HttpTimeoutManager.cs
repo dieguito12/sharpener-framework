@@ -1,28 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 
 namespace PHttp
 {
-    /// <summary>
-    /// Representative class of a timeout manager for http connections.</summary>
-    /// <remarks>
-    /// Implements the IDisposable interface.</remarks>
     internal class HttpTimeoutManager : IDisposable
     {
-        // Members
-        //
-
-        /// <summary>
-        /// Thread of the manager.
-        /// </summary>
         private Thread _thread;
-
-        /// <summary>
-        /// Event when 
-        /// </summary>
         private ManualResetEvent _closeEvent = new ManualResetEvent(false);
+
+        public TimeoutQueue ReadQueue { get; private set; }
+        public TimeoutQueue WriteQueue { get; private set; }
 
         public HttpTimeoutManager(HttpServer server)
         {
@@ -84,8 +75,6 @@ namespace PHttp
 
         public class TimeoutQueue
         {
-            // Members
-            //
             private readonly object _syncRoot = new object();
             private readonly Stopwatch _stopwatch = Stopwatch.StartNew();
             private readonly long _timeout;
@@ -127,6 +116,10 @@ namespace PHttp
 
         public class TimeoutItem
         {
+            public long Expires { get; private set; }
+            public IAsyncResult AsyncResult { get; private set; }
+            public IDisposable Disposable { get; private set; }
+
             public TimeoutItem(long expires, IAsyncResult asyncResult, IDisposable disposable)
             {
                 if (asyncResult == null)
@@ -136,17 +129,6 @@ namespace PHttp
                 AsyncResult = asyncResult;
                 Disposable = disposable;
             }
-
-            #region Properties
-            public long Expires { get; }
-            public IAsyncResult AsyncResult { get; }
-            public IDisposable Disposable { get; }
-            #endregion
         }
-
-        #region Properties
-        public TimeoutQueue ReadQueue { get; }
-        public TimeoutQueue WriteQueue { get; }
-        #endregion
     }
 }

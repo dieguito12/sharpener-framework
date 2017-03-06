@@ -31,8 +31,7 @@ namespace PHttp
         /// <returns>Html template encoded</returns>
         public string HtmlEncode(string value)
         {
-            //return HttpUtil.HtmlEncode(value);
-            return "";
+            return HttpUtil.HtmlEncode(value);
         }
 
         /// <summary>
@@ -42,8 +41,7 @@ namespace PHttp
         /// <returns>Html template</returns>
         public string HtmlDecode(string value)
         {
-            //return HttpUtil.HtmlDecode(value);
-            return "";
+            return HttpUtil.HtmlDecode(value);
         }
 
         /// <summary>
@@ -77,8 +75,7 @@ namespace PHttp
             if (encoding == null)
                 throw new ArgumentNullException("encoding");
 
-            //return HttpUtil.UriDecode(text, encoding);
-            return "";
+            return HttpUtil.UriDecode(text, encoding);
         }
     }
 }
