@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace PHttp
 {
@@ -46,6 +47,16 @@ namespace PHttp
         /// Event fired when client change.
         /// </summary>
         private AutoResetEvent _clientsChangedEvent = new AutoResetEvent(false);
+        
+        /// <summary>
+        /// Dictionary of all http clients
+        /// </summary>
+        private Dictionary<HttpClient, bool> _clients = new Dictionary<HttpClient, bool>();
+
+        /// <summary>
+        /// Object for the synchronous lock
+        /// </summary>
+        private Object _syncLock = new Object();
 
         /// <summary>
         /// Gets the timeout manager of the server.</summary>
@@ -71,8 +82,9 @@ namespace PHttp
             {
                 if (value != _state)
                 {
+                    HttpServerState previous = _state;
                     _state = value;
-                    OnStateChanged(new EventArgs());
+                    OnStateChanged(new HttpEventArgs(previous, _state));
                 }
             }
         }
@@ -269,7 +281,20 @@ namespace PHttp
         /// </summary>
         public void Stop()
         {
-            throw new NotImplementedException();
+            try
+            {
+                VerifyState(HttpServerState.Started);
+                State = HttpServerState.Stopping;
+                _listener.Stop();
+                StopClients();
+            }
+            catch (Exception e)
+            {
+                State = HttpServerState.Started;
+                Console.WriteLine("Failed stopping the server: {0}", e.Message);
+                throw new PHttpException("Failed to stop HTTP server.");
+            }
+            State = HttpServerState.Stopped;
         }
 
         /// <summary>
@@ -286,14 +311,6 @@ namespace PHttp
             {
                 throw new InvalidOperationException("Expected server to be in the state");
             }
-        }
-
-        /// <summary>
-        /// Stops clients of sending packets.
-        /// </summary>
-        private void StopClients()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -314,16 +331,70 @@ namespace PHttp
         /// <param name="asyncResult">Result object of the async acction.</param>
         private void AcceptTcpClientCallback(IAsyncResult asyncResult)
         {
-            throw new NotImplementedException();
+            try
+            {
+                TcpListener listener = _listener;
+                if (listener == null)
+                {
+                    return;
+                }
+                TcpClient tcpClient = listener.EndAcceptTcpClient(asyncResult);
+                if (_state == HttpServerState.Stopped)
+                {
+                    tcpClient.Close();
+                }
+                HttpClient client = new HttpClient(this);
+                RegisterClient(client);
+                client.BeginRequest();
+                BeginAcceptTcpClient();
+            }
+            catch (ObjectDisposedException objectDisposedException)
+            {
+                //
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }   
+        }
+
+
+        internal void RaiseRequest(HttpContext context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+            OnRequestReceived(new HttpRequestEventArgs(context));
         }
 
         /// <summary>
-        /// Registers a new client
+        /// Event thrown when a request is received
         /// </summary>
-        /// <param name="client">Http client.</param>
-        private void RegisterClient(HttpClient client)
+        /// <param name="args"></param>
+        public void OnRequestReceived(HttpRequestEventArgs args)
         {
-            throw new NotImplementedException();
+            //
+        }
+
+        internal bool RaiseUnhandledException(HttpContext context, Exception exception)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context");
+            }
+            var e = new HttpExceptionEventArgs(context, exception);
+            OnUnhandledException(e);
+            return e.Handled;
+        }
+
+        /// <summary>
+        /// Event thrown then a Http exception is unhandled
+        /// </summary>
+        /// <param name="args"></param>
+        private void OnUnhandledException(HttpExceptionEventArgs args)
+        {
+
         }
 
         /// <summary>
@@ -332,7 +403,106 @@ namespace PHttp
         /// <param name="client">Http client.</param>
         internal void UnregisterClient(HttpClient client)
         {
-            throw new NotImplementedException();
+            if (client == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            lock(_syncLock)
+            {
+                Debug.Assert(_clients.ContainsKey(client));
+                _clients.Remove(client);
+                _clientsChangedEvent.Set();
+            }
         }
+
+        /// <summary>
+        /// Stops clients of sending packets.
+        /// </summary>
+        private void StopClients()
+        {
+            var shutdownStarted = DateTime.Now;
+            bool forceShutdown = false;
+            // Clients that are waiting for new requests are closed.
+
+            List<HttpClient> clients;
+            lock (_syncLock)
+            {
+                clients = new List<HttpClient>(_clients.Keys);
+            }
+
+            foreach (var client in clients)
+            {
+                client.RequestClose();
+            }
+
+            // First give all clients a chance to complete their running requests.
+            while (true)
+            {
+                lock (_syncLock)
+                {
+                    if (_clients.Count == 0)
+                        break;
+                }
+
+                var shutdownRunning = DateTime.Now - shutdownStarted;
+
+                if (shutdownRunning >= ShutdownTimeout)
+                {
+                    forceShutdown = true;
+                    break;
+                }
+                _clientsChangedEvent.WaitOne(ShutdownTimeout - shutdownRunning);
+            }
+
+            if (!forceShutdown)
+                return;
+
+            // If there are still clients running after the timeout, their
+            // connections will be forcibly closed.
+            lock (_syncLock)
+            {
+                clients = new List<HttpClient>(_clients.Keys);
+            }
+
+            foreach (var client in clients)
+            {
+                client.ForceClose();
+            }
+
+            // Wait for the registered clients to be cleared.
+            while (true)
+            {
+                lock (_syncLock)
+                {
+                    if (_clients.Count == 0)
+                        break;
+                }
+                _clientsChangedEvent.WaitOne();
+            }
+        }
+
+        /// <summary>
+        /// Registers a new client
+        /// </summary>
+        /// <param name="client">Http client.</param>
+        private void RegisterClient(HttpClient client)
+        {
+            if (client == null)
+            {
+                throw new ArgumentException();
+            }
+
+            lock (_syncLock)
+            {
+                _clients.Add(client, true);
+                _clientsChangedEvent.Set();
+            }
+        }
+
+        /// <summary>
+        /// Unregisters a new client
+        /// </summary>
+        /// <param name="client">Http client.</param>
     }
 }
