@@ -102,6 +102,11 @@ namespace PHttp
             set;
         }
 
+        public void BeginRequest()
+        {
+            Reset();
+            BeginRead();
+        }
 
         private void BeginRead()
         {
