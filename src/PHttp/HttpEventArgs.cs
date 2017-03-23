@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PHttp
 {
-    class HttpEventArgs : EventArgs
+    public class HttpEventArgs : EventArgs
     {
         private HttpServerState _previousState;
 

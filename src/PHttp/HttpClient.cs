@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
@@ -34,13 +35,21 @@ namespace PHttp
 
         private static readonly Regex PrologRegex = new Regex("^([A-Z]+) ([^ ]+) (HTTP/[^ ]+)$", RegexOptions.Compiled);
 
-        public HttpClient(HttpServer server)
+        public HttpClient(HttpServer server, TcpClient client)
         {
+            if (server == null)
+                throw new ArgumentNullException("server");
+            if (client == null)
+                throw new ArgumentNullException("client");
+
+            Server = server;
+            TcpClient = client;
+
             ReadBuffer = new HttpReadBuffer(server.ReadBufferSize);
             _writeBuffer = new byte[server.WriteBufferSize];
-            Server = server;
-        }
 
+            _stream = client.GetStream();
+        }
 
         public TcpClient TcpClient
         {
@@ -258,8 +267,209 @@ namespace PHttp
 
         public void ExecuteRequest()
         {
-            //
+            _context = new HttpContext(this);
+
+            Server.RaiseRequest(_context);
+
+            WriteResponseHeaders();
         }
+
+        private void WriteResponseHeaders()
+        {
+            var headers = BuildResponseHeaders();
+
+            if (_writeStream != null)
+                _writeStream.Dispose();
+
+            _writeStream = new MemoryStream(headers);
+
+            _state = ClientState.WritingHeaders;
+
+            BeginWrite();
+        }
+
+        private void BeginWrite()
+        {
+            try
+            {
+                // Copy the next part from the write stream.
+
+                int read = _writeStream.Read(_writeBuffer, 0, _writeBuffer.Length);
+
+                Server.TimeoutManager.WriteQueue.Add(
+                    _stream.BeginWrite(_writeBuffer, 0, read, WriteCallback, null),
+                    this
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("BeginWrite failed: {0}", ex.Message);
+
+                Dispose();
+            }
+        }
+
+        private void WriteCallback(IAsyncResult asyncResult)
+        {
+            if (_disposed)
+                return;
+
+            try
+            {
+                _stream.EndWrite(asyncResult);
+
+                if (_writeStream != null && _writeStream.Length != _writeStream.Position)
+                {
+                    // Continue writing from the write stream.
+
+                    BeginWrite();
+                }
+                else
+                {
+                    if (_writeStream != null)
+                    {
+                        _writeStream.Dispose();
+                        _writeStream = null;
+                    }
+
+                    switch (_state)
+                    {
+                        case ClientState.WritingHeaders:
+                            WriteResponseContent();
+                            break;
+
+                        case ClientState.WritingContent:
+                            ProcessRequestCompleted();
+                            break;
+
+                        default:
+                            Debug.Assert(_state != ClientState.Closed);
+
+                            if (ReadBuffer.DataAvailable)
+                            {
+                                try
+                                {
+                                    ProcessReadBuffer();
+                                }
+                                catch (Exception ex)
+                                {
+                                    ProcessException(ex);
+                                }
+                            }
+                            else
+                            {
+                                BeginRead();
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to write: {0}", ex.Message);
+
+                Dispose();
+            }
+        }
+
+        private void WriteResponseContent()
+        {
+            if (_writeStream != null)
+                _writeStream.Dispose();
+
+            _writeStream = _context.Response.OutputStream.BaseStream;
+            _writeStream.Position = 0;
+
+            _state = ClientState.WritingContent;
+
+            BeginWrite();
+        }
+
+        private void ProcessRequestCompleted()
+        {
+            string connectionHeader;
+
+            // Do not accept new requests when the server is stopping.
+
+            if (
+                !_errored &&
+                Server.State == HttpServerState.Started &&
+                Headers.TryGetValue("Connection", out connectionHeader) &&
+                String.Equals(connectionHeader, "keep-alive", StringComparison.OrdinalIgnoreCase)
+            )
+                BeginRequest();
+            else
+                Dispose();
+        }
+
+        private byte[] BuildResponseHeaders()
+        {
+            var response = _context.Response;
+            var sb = new StringBuilder();
+
+            // Write the prolog.
+
+            sb.Append(Protocol);
+            sb.Append(' ');
+            sb.Append(response.StatusCode);
+
+            if (!String.IsNullOrEmpty(response.StatusDescription))
+            {
+                sb.Append(' ');
+                sb.Append(response.StatusDescription);
+            }
+
+            sb.Append("\r\n");
+
+            // Write all headers provided by Response.
+
+            if (!String.IsNullOrEmpty(response.CacheControl))
+                WriteHeader(sb, "Cache-Control", response.CacheControl);
+
+            if (!String.IsNullOrEmpty(response.ContentType))
+            {
+                string contentType = response.ContentType;
+
+                if (!String.IsNullOrEmpty(response.CharSet))
+                    contentType += "; charset=" + response.CharSet;
+
+                WriteHeader(sb, "Content-Type", contentType);
+            }
+
+            WriteHeader(sb, "Expires", response.ExpiresAbsolute.ToString("R"));
+
+            if (!String.IsNullOrEmpty(response.RedirectLocation))
+                WriteHeader(sb, "Location", response.RedirectLocation);
+
+            // Write the remainder of the headers.
+
+            foreach (string key in response.Headers.AllKeys)
+            {
+                WriteHeader(sb, key, response.Headers[key]);
+            }
+
+            // Write the content length (we override custom headers for this).
+
+            WriteHeader(sb, "Content-Length", response.OutputStream.BaseStream.Length.ToString(CultureInfo.InvariantCulture));
+
+            for (int i = 0; i < response.Cookies.Count; i++)
+            {
+                WriteHeader(sb, "Set-Cookie", response.Cookies[i].GetHeaderValue());
+            }
+
+            sb.Append("\r\n");
+
+            return response.HeadersEncoding.GetBytes(sb.ToString());
+        }
+
+        private void WriteHeader(StringBuilder sb, string key, string value)
+        {
+            sb.Append(key);
+            sb.Append(": ");
+            sb.Append(value);
+            sb.Append("\r\n");
+        }
+
 
         private void Reset()
         {
