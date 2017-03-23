@@ -43,6 +43,10 @@ namespace PHttp
         /// </summary>
         public event EventHandler StateChanged;
 
+        public event HttpRequestEventHandler RequestReceived;
+
+        public event HttpExceptionEventHandler UnhandledException;
+
         /// <summary>
         /// Event fired when client change.
         /// </summary>
@@ -78,7 +82,7 @@ namespace PHttp
             {
                 return _state;
             }
-            set
+            private set
             {
                 if (value != _state)
                 {
@@ -190,7 +194,7 @@ namespace PHttp
         /// </summary>
         public HttpServer()
         {
-            EndPoint = new IPEndPoint(IPAddress.Loopback, 0);
+            EndPoint = new IPEndPoint(IPAddress.Loopback, 80);
             ReadBufferSize = 4096;
             WriteBufferSize = 4096;
             ShutdownTimeout = TimeSpan.FromSeconds(30);
@@ -203,22 +207,24 @@ namespace PHttp
         /// Constructor of the class.
         /// </summary>
         /// <param name="port">Port where the server will run.</param>
-        public HttpServer(int port) : base()
+        public HttpServer(int port) : this()
         {
             Port = port;
+            EndPoint = new IPEndPoint(IPAddress.Loopback, Port);
         }
 
         /// <summary>
         /// Method invoked when the server changes its state.
         /// </summary>
         /// <param name="args">Event arguments</param>
-        protected virtual void OnStateChanged(EventArgs args)
+        protected virtual void OnStateChanged(HttpEventArgs args)
         {
-            if (StateChanged == null)
+            var ev = StateChanged;
+            if (ev == null)
             {
                 throw new NullReferenceException("StateChanged must be different than null");
             }
-            StateChanged.Invoke(this, args);
+            ev.Invoke(this, args);
         }
 
         /// <summary>
@@ -261,6 +267,7 @@ namespace PHttp
                 try
                 {
                     listener.Start();
+                    EndPoint = (IPEndPoint)listener.LocalEndpoint;
                     _listener = listener;
                     ServerUtility = new HttpServerUtility();
                     Console.WriteLine("Server Running at {0} ...", EndPoint.Address);
@@ -343,7 +350,7 @@ namespace PHttp
                 {
                     tcpClient.Close();
                 }
-                HttpClient client = new HttpClient(this);
+                HttpClient client = new HttpClient(this, tcpClient);
                 RegisterClient(client);
                 client.BeginRequest();
                 BeginAcceptTcpClient();
@@ -374,7 +381,11 @@ namespace PHttp
         /// <param name="args"></param>
         public void OnRequestReceived(HttpRequestEventArgs args)
         {
-            //
+            var ev = RequestReceived;
+            if (ev != null)
+            {
+                ev(this, args);
+            }
         }
 
         internal bool RaiseUnhandledException(HttpContext context, Exception exception)
@@ -394,7 +405,11 @@ namespace PHttp
         /// <param name="args"></param>
         private void OnUnhandledException(HttpExceptionEventArgs args)
         {
-
+            var ev = UnhandledException;
+            if (ev != null)
+            {
+                ev(this, args);
+            }
         }
 
         /// <summary>
@@ -500,9 +515,5 @@ namespace PHttp
             }
         }
 
-        /// <summary>
-        /// Unregisters a new client
-        /// </summary>
-        /// <param name="client">Http client.</param>
     }
 }
