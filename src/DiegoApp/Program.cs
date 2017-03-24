@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using PHttp;
-using MimeTypes;
 using System.Configuration;
 
 namespace Demo
@@ -35,13 +34,14 @@ namespace Demo
                         filePath = dirPath + '/' + @"index.html";
                     }
                     string extension = Path.GetExtension(filePath);
-                    string mime = MimeTypeMap.GetMimeType(extension);
+                    string mime = HttpMimeTypeMap.GetMimeType(extension);
                     e.Response.ContentType = mime;
 
                     byte[] data;
                     if (!File.Exists(filePath))
                     {
                         data = File.ReadAllBytes(dirPath + '/' + "404.html");
+                        e.Response.StatusCode = 404;
                         e.Response.ContentType = "text/html";
                     }
                     else
