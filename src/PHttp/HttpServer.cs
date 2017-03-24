@@ -194,7 +194,7 @@ namespace PHttp
         /// </summary>
         public HttpServer()
         {
-            EndPoint = new IPEndPoint(IPAddress.Loopback, 80);
+            EndPoint = new IPEndPoint(IPAddress.Parse("0.0.0.0"), 80);
             ReadBufferSize = 4096;
             WriteBufferSize = 4096;
             ShutdownTimeout = TimeSpan.FromSeconds(30);
@@ -210,7 +210,7 @@ namespace PHttp
         public HttpServer(int port) : this()
         {
             Port = port;
-            EndPoint = new IPEndPoint(IPAddress.Loopback, Port);
+            EndPoint = new IPEndPoint(IPAddress.Parse("0.0.0.0"), Port);
         }
 
         /// <summary>
