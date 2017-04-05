@@ -1,0 +1,16 @@
+{
+    "name": "Application 1",
+    "databaseConnection": "Connection",
+    "bearer": "MyApp1",
+    "secret":  "GQDstcKsx0NHjPOuXOYg5MbeJ1XT0uFiwDVvVBrk",
+    "authenticationDriver": "jwt",
+    "defaultDocument": "index.hbs",
+    "errorPages": [
+        {
+            "404": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\App1\\Views\\Errors\\404.hbs"
+        },
+        {
+            "500": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\App1\\Views\\Errors\\500.hbs"
+        }
+    ]
+}

@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mvc\Mvc.csproj">
+      <Project>{97d04453-32de-476b-b80f-a4df76e68e9c}</Project>
+      <Name>Mvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PHttp\PHttp.csproj">
       <Project>{25a5a431-10ef-4aca-ac02-7026b97240c6}</Project>
       <Name>PHttp</Name>

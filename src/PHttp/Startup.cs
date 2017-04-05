@@ -18,7 +18,7 @@ namespace PHttp
         /// </summary>
         /// <param name="path">Path of the dll file where all the apps are.</param>
         /// <returns>A list of the instances of all applications.</returns>
-        public static List<Application.IPHttpApplication> LoadApps(string path)
+        public static Application.IPHttpApplication LoadApp(string path)
         {
             List<Application.IPHttpApplication> apps = new List<Application.IPHttpApplication>();
             DirectoryInfo di = new DirectoryInfo(path);
@@ -31,14 +31,38 @@ namespace PHttp
                 {
                     if (type != typeof(Application.IPHttpApplication) && typeof(Application.IPHttpApplication).IsAssignableFrom(type))
                     {
-                        apps.Add((Application.IPHttpApplication)Activator.CreateInstance(type));
+                        return (Application.IPHttpApplication)Activator.CreateInstance(type);
                     }
                 }
             }
 
-            foreach(var app in apps)
+            return null;
+        }
+
+        /// <summary>
+        /// Load all apps of the web server that implements the IPHttpApplication interface.
+        /// </summary>
+        /// <param name="path">Path of the dll file where all the apps are.</param>
+        /// <returns>A list of the instances of all applications.</returns>
+        public static Dictionary<string, Application.IPHttpApplication> LoadApps(string[] physicalPaths, string[] virtualPaths)
+        {
+            Dictionary<string, Application.IPHttpApplication> apps = new Dictionary<string, Application.IPHttpApplication>();
+            for(int i = 0; i < physicalPaths.Length; i++)
             {
-                app.Start();
+                DirectoryInfo di = new DirectoryInfo(physicalPaths[i]);
+                FileInfo[] fis = di.GetFiles("*.dll");
+                foreach (FileInfo fls in fis)
+                {
+                    var assembly = Assembly.LoadFrom(fls.FullName);
+
+                    foreach (var type in assembly.GetTypes())
+                    {
+                        if (type != typeof(Application.IPHttpApplication) && typeof(Application.IPHttpApplication).IsAssignableFrom(type))
+                        {
+                            apps.Add(virtualPaths[i], (Application.IPHttpApplication)Activator.CreateInstance(type));
+                        }
+                    }
+                }
             }
             return apps;
         }
