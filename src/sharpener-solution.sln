@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc", "Mvc\Mvc.csproj", "{9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiegoApp", "DiegoApp\DiegoApp.csproj", "{C9E0130B-5DFB-4BD9-9168-56BBEDB8CDAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1", "App1\App1.csproj", "{75D61DF4-53EF-4F2B-84C7-0067BF46CC4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App3", "App3\App3.csproj", "{453B7EAF-0421-4901-8981-785849E98C6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{C9E0130B-5DFB-4BD9-9168-56BBEDB8CDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9E0130B-5DFB-4BD9-9168-56BBEDB8CDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9E0130B-5DFB-4BD9-9168-56BBEDB8CDAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D61DF4-53EF-4F2B-84C7-0067BF46CC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D61DF4-53EF-4F2B-84C7-0067BF46CC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D61DF4-53EF-4F2B-84C7-0067BF46CC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D61DF4-53EF-4F2B-84C7-0067BF46CC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{453B7EAF-0421-4901-8981-785849E98C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{453B7EAF-0421-4901-8981-785849E98C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{453B7EAF-0421-4901-8981-785849E98C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{453B7EAF-0421-4901-8981-785849E98C6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,57 @@
+{
+    "port": 8084,
+    "errorPages": [
+        {
+            "401": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\401.html"
+        },
+        {
+            "403": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\403.html"
+        },
+        {
+            "404": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\404.html"
+        },
+        {
+            "405": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\405.html"
+        },
+        {
+            "406": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\406.html"
+        },
+        {
+            "412": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\412.html"
+        },
+        {
+            "500": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\500.html"
+        },
+        {
+            "501": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\501.html"
+        },
+        {
+            "502": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\PHttp\\Resources\\502.html"
+        }
+    ],
+    "defaultDocuments": [
+        "index.html",
+        "index.htm",
+        "default.html",
+        "default.htm"
+    ],
+    "sites": [
+        {
+            "name": "Application 1",
+            "virtualPath": "/app1",
+            "physicalPath": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\App1",
+            "directoryBrowsing": false,
+            "defaultDocument": [
+                "index.hbs"
+            ],
+            "errorPages": [
+                {
+                    "404": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\App1\\Views\\Errors\\404.hbs"
+                },
+                {
+                    "500": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\App1\\Views\\Errors\\500.hbs"
+                },
+            ]
+        }
+    ]
+}
