@@ -23,28 +23,22 @@ namespace Mvc
             }
             var json = JsonWebToken.Decode(token, secret, false);
             NameValueCollection values = Json.Serialize(json);
-            var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var now = Math.Round((DateTime.Now - unixEpoch).TotalSeconds);
-            if (values["exp"] != null && values["exp"] != "")
-            {
-                if (long.Parse(values["exp"]) < now)
-                {
-                    return null;
-                }
-            }
+
+            string newToken = Session.RefreshToken(10, secret, token);
 
             JObject jsonFile = JObject.Parse(File.ReadAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json"));
             List<string> tokens = new List<string>();
             JArray authTokens = (JArray)jsonFile["tokens"];
+
             foreach (JValue authToken in authTokens)
             {
                 tokens.Add(authToken.ToString());
             }
 
-            if (tokens.Contains(token))
+            if (tokens.Contains(newToken))
             {
                 User user = new User(values["username"], values["password"]);
-                user.Token = token;
+                user.Token = newToken;
                 return user;
             }
             return null;

@@ -1,10 +1,10 @@
 {
     "name": "Application 1",
-    "databaseConnection": "Connection",
+    "databaseConnection": "server=localhost;user id=root;password=secret;database=url_shortener",
     "bearer": "MyApp1",
     "secret":  "GQDstcKsx0NHjPOuXOYg5MbeJ1XT0uFiwDVvVBrk",
-    "authenticationDriver": "jwt",
-    "defaultDocument": "index.hbs",
+    "authenticationDriver": "session",
+    "defaultDocument": "index.html",
     "errorPages": [
         {
             "404": "C:\\Users\\dieguito12\\Code\\sharpener-framework\\src\\App1\\Views\\Errors\\404.hbs"
