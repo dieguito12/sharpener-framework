@@ -16,13 +16,13 @@ namespace PHttp
 
         public string ContentType { get; set; }
 
-        public HttpCookieCollection Cookies { get; private set; }
+        public HttpCookieCollection Cookies { get; set; }
 
         public DateTime ExpiresAbsolute { get; set; }
 
         public Encoding HeadersEncoding { get; set; }
 
-        public NameValueCollection Headers { get; private set; }
+        public NameValueCollection Headers { get; set; }
 
         public bool IsClientConnected { get { return true; } }
 

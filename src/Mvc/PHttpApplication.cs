@@ -52,6 +52,25 @@ namespace Mvc
 
         private string _configurationPath;
 
+        private NameValueCollection _headers = new NameValueCollection();
+
+        public NameValueCollection Headers
+        {
+            get
+            {
+                return _headers;
+            }
+            private set
+            {
+                _headers = value;
+            }
+        }
+
+        public NameValueCollection GetHeaders()
+        {
+            return Headers;
+        }
+
         public string ConfigurationPath
         {
             get
@@ -213,6 +232,11 @@ namespace Mvc
             return ConfigurationManager;
         }
 
+        public string GetSession()
+        {
+            return Session.GetCurrentSession();
+        }
+
 
         public object ExecuteControllerAction(Dictionary<string, object> actionToCall)
         {
@@ -271,6 +295,7 @@ namespace Mvc
                                             {
                                                 app.SetUser(user);
                                                 IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
+                                                Headers = app.HttpContext.Headers;
                                                 return result;
                                             }
                                             return (int)401;
@@ -278,6 +303,7 @@ namespace Mvc
                                         else
                                         {
                                             IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
+                                            Headers = app.HttpContext.Headers;
                                             return result;
                                         }
                                     }

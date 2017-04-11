@@ -117,45 +117,51 @@ namespace DiegoApp
                                 {
                                     app.Init(site.Name, site.VirtualPath, site.PhysicalPath);
                                     Mvc.Session.DeleteExpiredSessions(((Mvc.ConfigurationManager)app.GetConfigurationManager()).ApplicationSecretKey);
-                                    Mvc.Session.DeleteExpiredTokens(((Mvc.ConfigurationManager)app.GetConfigurationManager()).ApplicationSecretKey);
                                     string currentSession = e.Request.Cookies["sharpener-session"].Value;
-                                    if (currentSession == null || currentSession == "" || !Mvc.Session.SessionExists(currentSession))
+                                    if (currentSession != null && currentSession != "" && Mvc.Session.SessionExists(currentSession))
                                     {
-                                        e.Response.Cookies["sharpener-session"].Value = Mvc.Session.GenerateAuthSession(
-                                            new Mvc.User("", ""), 
-                                            ((Mvc.ConfigurationManager)app.GetConfigurationManager()).ApplicationSecretKey);
+                                        Mvc.Session.SetSession(currentSession);
+                                    }
+                                    if (pathElements[2] == "" || pathElements[2] == "/")
+                                    {
+                                        byte[] data;
+                                        string indexPath = site.PhysicalPath + "\\" + ((Mvc.ConfigurationManager)app.GetConfigurationManager()).ApplicaitonDefaultDocument;
+                                        data = File.ReadAllBytes(indexPath);
+                                        e.Response.StatusCode = 200;
+                                        e.Response.ContentType = "text/html";
+                                        MemoryStream stream = new MemoryStream(data);
+                                        e.Response.OutputStream = new HttpOutputStream(stream);
                                     }
                                     else
                                     {
-                                        Mvc.Session.SetSession(currentSession);
-                                        Mvc.Session.RefreshSession(30, ((Mvc.ConfigurationManager)app.GetConfigurationManager()).ApplicationSecretKey);
-                                    }
-                                    object result = app.ExecuteControllerAction(actionToCall);
-                                    MemoryStream stream = new MemoryStream();
-                                    if (result.GetType() == typeof(int))
-                                    {
-                                        byte[] data;
-                                        if (site.ErrorPages.ContainsKey((int)result))
+                                        object result = app.ExecuteControllerAction(actionToCall);
+                                        e.Response.Headers = app.GetHeaders();
+                                        e.Response.Cookies.Add(new HttpCookie("sharpener-session", app.GetSession()));
+                                        MemoryStream stream = new MemoryStream();
+                                        if (result.GetType() == typeof(int))
                                         {
-                                            data = Encoding.ASCII.GetBytes(app.Error(site.ErrorPages[(int)result], "Handlebars Error"));
+                                            byte[] data;
+                                            if (site.ErrorPages.ContainsKey((int)result))
+                                            {
+                                                data = Encoding.ASCII.GetBytes(app.Error(site.ErrorPages[(int)result], "Handlebars Error"));
+                                            }
+                                            else
+                                            {
+                                                data = File.ReadAllBytes(HttpConfig.GetErrorPages()[(int)result]);
+                                            }
+                                            e.Response.StatusCode = (int)result;
+                                            e.Response.ContentType = "text/html";
+                                            stream = new MemoryStream(data);
                                         }
                                         else
                                         {
-                                            data = File.ReadAllBytes(HttpConfig.GetErrorPages()[(int)result]);
+                                            e.Response.ContentType = ((Mvc.IActionResult)result).ContentType();
+                                            e.Response.StatusCode = ((Mvc.IActionResult)result).Code();
+                                            stream = ((Mvc.IActionResult)result).Response();
                                         }
-                                        e.Response.StatusCode = (int)result;
-                                        e.Response.ContentType = "text/html";
-                                        stream = new MemoryStream(data);
+                                        e.Response.OutputStream = new HttpOutputStream(stream);
                                     }
-                                    else
-                                    {
-                                        e.Response.ContentType = ((Mvc.IActionResult)result).ContentType();
-                                        e.Response.StatusCode = ((Mvc.IActionResult)result).Code();
-                                        stream = ((Mvc.IActionResult)result).Response();
-                                    }
-                                    e.Response.OutputStream = new HttpOutputStream(stream);
                                 }
-                                
                             }
                         }
                     }
@@ -170,6 +176,7 @@ namespace DiegoApp
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
                         byte[] data;
                         data = File.ReadAllBytes(HttpConfig.GetErrorPages()[500]);
                         e.Response.StatusCode = 500;
@@ -181,9 +188,9 @@ namespace DiegoApp
 
 
                 server.Start();
-
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
+                while(true) {; }
+                //Console.WriteLine("Press any key to continue...");
+                //Console.ReadKey();
 
             }
         }

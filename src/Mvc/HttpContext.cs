@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,34 @@ namespace Mvc
         string _physicalPath;
 
         private ConfigurationManager _configurationManager;
+
+        private NameValueCollection _headers = new NameValueCollection();
+
+        private string _session;
+
+        public NameValueCollection Headers
+        {
+            get
+            {
+                return _headers;
+            }
+            set
+            {
+                _headers = value;
+            }
+        }
+
+        public string Session
+        {
+            get
+            {
+                return _session;
+            }
+            set
+            {
+                _session = value;
+            }
+        }
 
         public ConfigurationManager ConfigurationManager
         {
