@@ -143,29 +143,36 @@ namespace Mvc
             FileInfo[] fis = di.GetFiles("*.dll");
             foreach (FileInfo fls in fis)
             {
-                var assembly = Assembly.LoadFrom(fls.FullName);
-
-                foreach (var type in assembly.GetTypes())
+                try
                 {
-                    if (type != typeof(Mvc.BaseController) && typeof(Mvc.BaseController).IsAssignableFrom(type))
+                    var assembly = Assembly.LoadFrom(fls.FullName);
+
+                    foreach (var type in assembly.GetTypes())
                     {
-                        string path = "/";
-                        string controller = "";
-                        app = (Mvc.BaseController)Activator.CreateInstance(type);
-                        controller = app.GetType().Name;
-                        path += controller.Replace("Controller", "").ToLower();
-                        foreach(MethodInfo method in app.GetType().GetMethods())
+                        if (type != typeof(Mvc.BaseController) && typeof(Mvc.BaseController).IsAssignableFrom(type))
                         {
-                            string action = "/" + method.Name.ToLower();
-                            object[] customAttributes = method.GetCustomAttributes(typeof(HttpMethod), true);
-                            foreach(var attribute in customAttributes)
+                            string path = "/";
+                            string controller = "";
+                            app = (Mvc.BaseController)Activator.CreateInstance(type);
+                            controller = app.GetType().Name;
+                            path += controller.Replace("Controller", "").ToLower();
+                            foreach (MethodInfo method in app.GetType().GetMethods())
                             {
-                                string httpMethod = attribute.ToString().Replace("Mvc.Http", "").ToUpper();
-                                Route route = new Route(path + action, httpMethod, controller, method.Name);
-                                _routes.Add(route);
+                                string action = "/" + method.Name.ToLower();
+                                object[] customAttributes = method.GetCustomAttributes(typeof(HttpMethod), true);
+                                foreach (var attribute in customAttributes)
+                                {
+                                    string httpMethod = attribute.ToString().Replace("Mvc.Http", "").ToUpper();
+                                    Route route = new Route(path + action, httpMethod, controller, method.Name);
+                                    _routes.Add(route);
+                                }
                             }
                         }
                     }
+                }
+                catch (Exception e)
+                {
+                    continue;
                 }
             }
         }
@@ -257,57 +264,64 @@ namespace Mvc
                         FileInfo[] fis = di.GetFiles("*.dll");
                         foreach (FileInfo fls in fis)
                         {
-                            var assembly = Assembly.LoadFrom(fls.FullName);
-
-                            foreach (var type in assembly.GetTypes())
+                            try
                             {
-                                if (type != typeof(Mvc.BaseController) && typeof(Mvc.BaseController).IsAssignableFrom(type))
+                                var assembly = Assembly.LoadFrom(fls.FullName);
+
+                                foreach (var type in assembly.GetTypes())
                                 {
-                                    app = (Mvc.BaseController)Activator.CreateInstance(type);
-                                    app.HttpRequest = new Request(
-                                            (string)actionToCall["Path"],
-                                            (NameValueCollection)actionToCall["Parameters"],
-                                            (Dictionary<string, HttpFile>)actionToCall["Files"],
-                                            (NameValueCollection)actionToCall["Headers"]
-                                    );
-                                    app.Route = route;
-                                    app.HttpContext.PhysicalPath = PhysicalPath;
-                                    app.HttpContext.ConfigurationManager = ConfigurationManager;
-                                    if (app.GetType().Name == route.Controller)
+                                    if (type != typeof(Mvc.BaseController) && typeof(Mvc.BaseController).IsAssignableFrom(type))
                                     {
-                                        MethodInfo method = app.GetType().GetMethod(route.Action);
-                                        AuthorizeAttribute attribute = (AuthorizeAttribute)method.GetCustomAttribute(typeof(AuthorizeAttribute));
-                                        User user = null;
-                                        if (attribute != null)
+                                        app = (Mvc.BaseController)Activator.CreateInstance(type);
+                                        app.HttpRequest = new Request(
+                                                (string)actionToCall["Path"],
+                                                (NameValueCollection)actionToCall["Parameters"],
+                                                (Dictionary<string, HttpFile>)actionToCall["Files"],
+                                                (NameValueCollection)actionToCall["Headers"]
+                                        );
+                                        app.Route = route;
+                                        app.HttpContext.PhysicalPath = PhysicalPath;
+                                        app.HttpContext.ConfigurationManager = ConfigurationManager;
+                                        if (app.GetType().Name == route.Controller)
                                         {
-                                            switch(ConfigurationManager.ApplicationAuthenticationDriver)
+                                            MethodInfo method = app.GetType().GetMethod(route.Action);
+                                            AuthorizeAttribute attribute = (AuthorizeAttribute)method.GetCustomAttribute(typeof(AuthorizeAttribute));
+                                            User user = null;
+                                            if (attribute != null)
                                             {
-                                                case "session":
-                                                    user = attribute.AuthorizeSession(Session.GetCurrentSession());
-                                                    break;
-                                                case "jwt":
-                                                    user = attribute.AuthorizeAuthToken(app.HttpRequest, ConfigurationManager.ApplicationSecretKey);
-                                                    break;
-                                                default:
-                                                    throw new NotImplementedException("Not implemented for other authentication drivers");
+                                                switch (ConfigurationManager.ApplicationAuthenticationDriver)
+                                                {
+                                                    case "session":
+                                                        user = attribute.AuthorizeSession(Session.GetCurrentSession());
+                                                        break;
+                                                    case "jwt":
+                                                        user = attribute.AuthorizeAuthToken(app.HttpRequest, ConfigurationManager.ApplicationSecretKey);
+                                                        break;
+                                                    default:
+                                                        throw new NotImplementedException("Not implemented for other authentication drivers");
+                                                }
+                                                if (user != null)
+                                                {
+                                                    app.SetUser(user);
+                                                    IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
+                                                    Headers = app.HttpContext.Headers;
+                                                    return result;
+                                                }
+                                                return (int)401;
                                             }
-                                            if (user != null)
+                                            else
                                             {
-                                                app.SetUser(user);
                                                 IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
                                                 Headers = app.HttpContext.Headers;
                                                 return result;
                                             }
-                                            return (int)401;
-                                        }
-                                        else
-                                        {
-                                            IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
-                                            Headers = app.HttpContext.Headers;
-                                            return result;
                                         }
                                     }
                                 }
+                            }
+                            catch (Exception e)
+                            {
+                                continue;
                             }
                         }
                     }

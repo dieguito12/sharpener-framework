@@ -10,8 +10,8 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-src/Mvc/Sessions/
-src/Mvc/Tokens/
+src/Mvc/Sessions/*
+src/Mvc/Tokens/tokens.json
 
 # Build results
 [Dd]ebug/
