@@ -54,14 +54,21 @@ namespace PHttp
                 foreach (FileInfo fls in fis)
                 {
                     var assembly = Assembly.LoadFrom(fls.FullName);
-
-                    foreach (var type in assembly.GetTypes())
+                    try
                     {
-                        if (type != typeof(Application.IPHttpApplication) && typeof(Application.IPHttpApplication).IsAssignableFrom(type))
+                        foreach (var type in assembly.GetTypes())
                         {
-                            apps.Add(virtualPaths[i], (Application.IPHttpApplication)Activator.CreateInstance(type));
+                            if (type != typeof(Application.IPHttpApplication) && typeof(Application.IPHttpApplication).IsAssignableFrom(type))
+                            {
+                                apps.Add(virtualPaths[i], (Application.IPHttpApplication)Activator.CreateInstance(type));
+                            }
                         }
                     }
+                    catch(Exception e)
+                    {
+                        continue;
+                    }
+                    
                 }
             }
             return apps;
