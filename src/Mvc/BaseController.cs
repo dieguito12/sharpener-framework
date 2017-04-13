@@ -47,25 +47,28 @@ namespace Mvc
             set
             {
                 _user = value;
-                var now = DateTime.Now.AddMinutes(30);
-                var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-                var secondsSinceEpoch = Math.Round((now - unixEpoch).TotalSeconds);
-                var payload = new Dictionary<string, object>
+                if (HttpContext.ConfigurationManager.ApplicationAuthenticationDriver == "jwt")
                 {
-                    { "username", value.Username },
-                    { "password", value.Password },
-                    { "exp", secondsSinceEpoch }
-                };
-                var token = JsonWebToken.Encode(payload, HttpContext.ConfigurationManager.ApplicationSecretKey, JwtHashAlgorithm.HS256);
-                _user.Token = token;
-                JObject json = JObject.Parse(File.ReadAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json"));
-                dynamic jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(json.ToString());
-                JArray allTokens = jsonObject.tokens;
-                JToken newToken = (JToken)token;
-                allTokens.Add(newToken);
-                jsonObject.tokens = allTokens;
-                var modifiedJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
-                File.WriteAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json", modifiedJsonString);
+                    var now = DateTime.Now.AddMinutes(30);
+                    var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                    var secondsSinceEpoch = Math.Round((now - unixEpoch).TotalSeconds);
+                    var payload = new Dictionary<string, object>
+                    {
+                        { "username", value.Username },
+                        { "password", value.Password },
+                        { "exp", secondsSinceEpoch }
+                    };
+                    var token = JsonWebToken.Encode(payload, HttpContext.ConfigurationManager.ApplicationSecretKey, JwtHashAlgorithm.HS256);
+                    _user.Token = token;
+                    JObject json = JObject.Parse(File.ReadAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json"));
+                    dynamic jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(json.ToString());
+                    JArray allTokens = jsonObject.tokens;
+                    JToken newToken = (JToken)token;
+                    allTokens.Add(newToken);
+                    jsonObject.tokens = allTokens;
+                    var modifiedJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject);
+                    File.WriteAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json", modifiedJsonString);
+                }
             }
         }
 
