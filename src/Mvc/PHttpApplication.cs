@@ -321,6 +321,7 @@ namespace Mvc
                             }
                             catch (Exception e)
                             {
+                                Console.WriteLine(e.StackTrace);
                                 continue;
                             }
                         }
