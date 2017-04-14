@@ -67,6 +67,7 @@ namespace DiegoApp
                             actionToCall.Add("Path", path);
                             actionToCall.Add("Method", e.Request.HttpMethod);
                             actionToCall.Add("Parameters", e.Request.Form);
+                            actionToCall.Add("QueryParams", e.Request.Params);
                             actionToCall.Add("Headers", e.Request.Headers);
                             Dictionary<string, Mvc.HttpFile> files = new Dictionary<string, Mvc.HttpFile>();
                             for(int i = 0; i < e.Request.Files.Count; i++)
@@ -85,7 +86,7 @@ namespace DiegoApp
                                     break;
                                 }
                             }
-                            if (site == null)
+                            if (site == null || e.Request.Path.Contains('.'))
                             {
                                 byte[] data;
                                 data = File.ReadAllBytes(rootPath + e.Request.Path.Replace("/", "\\"));
@@ -134,7 +135,7 @@ namespace DiegoApp
                                     }
                                     else
                                     {
-                                        object result = app.ExecuteControllerAction(actionToCall);
+                                        object result = app.ExecuteControllerAction(actionToCall);                                     
                                         e.Response.Headers = app.GetHeaders();
                                         e.Response.Cookies.Add(new HttpCookie("sharpener-session", app.GetSession()));
                                         MemoryStream stream = new MemoryStream();
@@ -155,9 +156,16 @@ namespace DiegoApp
                                         }
                                         else
                                         {
-                                            e.Response.ContentType = ((Mvc.IActionResult)result).ContentType();
-                                            e.Response.StatusCode = ((Mvc.IActionResult)result).Code();
-                                            stream = ((Mvc.IActionResult)result).Response();
+                                            if (((Mvc.IActionResult)result).Code() == 301 || ((Mvc.IActionResult)result).Code() == 302)
+                                            {
+                                                e.Response.RedirectPermanent(((Mvc.IActionResult)result).Redirection());
+                                            }
+                                            else
+                                            {
+                                                e.Response.ContentType = ((Mvc.IActionResult)result).ContentType();
+                                                e.Response.StatusCode = ((Mvc.IActionResult)result).Code();
+                                                stream = ((Mvc.IActionResult)result).Response();
+                                            }
                                         }
                                         e.Response.OutputStream = new HttpOutputStream(stream);
                                     }

@@ -10,19 +10,18 @@ namespace Mvc
 {
     public class Request
     {
-    
-        public Request(string path, NameValueCollection parameters, Dictionary<string, HttpFile> files, NameValueCollection headers)
+        public Request(string path, NameValueCollection parameters, Dictionary<string, HttpFile> files, NameValueCollection headers, NameValueCollection queryParams)
         {
             Parameters = parameters;
             Path = path;
             Files = files;
-            QueryString = QueryString;
+            QueryParams = queryParams;
             Headers = headers;
         }
 
         public NameValueCollection Headers { get; private set; }
 
-        public NameValueCollection QueryString { get; private set; }
+        public NameValueCollection QueryParams { get; private set; }
 
         public NameValueCollection Parameters { get; private set; }
 

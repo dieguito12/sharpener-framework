@@ -64,5 +64,10 @@ namespace Mvc
         {
             return "application/json";
         }
+
+        public string Redirection()
+        {
+            return "";
+        }
     }
 }

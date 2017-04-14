@@ -13,10 +13,13 @@ namespace Mvc
 
         private string _text;
 
-        public Content(string text, int code)
+        private string _redirect;
+
+        public Content(string text, int code, string redirect)
         {
             _text = text;
             _code = code;
+            _redirect = redirect;
         }
         public int Code()
         {
@@ -31,6 +34,11 @@ namespace Mvc
         public string ContentType()
         {
             return "text/plain";
+        }
+
+        public string Redirection()
+        {
+            return _redirect;
         }
     }
 }

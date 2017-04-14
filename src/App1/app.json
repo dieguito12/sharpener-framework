@@ -3,7 +3,7 @@
     "databaseConnection": "server=localhost;user id=root;password=secret;database=url_shortener",
     "bearer": "MyApp1",
     "secret":  "GQDstcKsx0NHjPOuXOYg5MbeJ1XT0uFiwDVvVBrk",
-    "authenticationDriver": "session",
+    "authenticationDriver": "jwt",
     "defaultDocument": "index.html",
     "errorPages": [
         {

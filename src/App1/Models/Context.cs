@@ -19,7 +19,17 @@ namespace App1.Models
         {
 
         }
-        public DbSet<UserModel> Users{ get; set; }
-        public DbSet<UrlModel> Urls{ get; set; }
+        public DbSet<UserModel> Users { get; set; }
+
+        public DbSet<UrlModel> Urls { get; set; }
+
+        public DbSet<RefererModel> Referers { get; set; }
+
+        public DbSet<AgentModel> Agents { get; set; }
+
+        public DbSet<PlatformModel> Platforms { get; set; }
+
+        public DbSet<LocationModel> Locations { get; set; }
+
     }
 }

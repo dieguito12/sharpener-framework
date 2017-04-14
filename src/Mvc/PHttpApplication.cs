@@ -250,7 +250,9 @@ namespace Mvc
             bool methodNotAllowed = false;
             foreach(Route route in _routes)
             {
-                if (route.Path == actionToCall["Path"].ToString())
+                string[] pathParts = actionToCall["Path"].ToString().Split('/');
+                string path = "/" + pathParts[1] + "/" + pathParts[2];
+                if (route.Path == path)
                 {
                     if (route.Method != actionToCall["Method"].ToString())
                     {
@@ -277,7 +279,8 @@ namespace Mvc
                                                 (string)actionToCall["Path"],
                                                 (NameValueCollection)actionToCall["Parameters"],
                                                 (Dictionary<string, HttpFile>)actionToCall["Files"],
-                                                (NameValueCollection)actionToCall["Headers"]
+                                                (NameValueCollection)actionToCall["Headers"],
+                                                (NameValueCollection)actionToCall["QueryParams"]
                                         );
                                         app.Route = route;
                                         app.HttpContext.PhysicalPath = PhysicalPath;
@@ -296,6 +299,7 @@ namespace Mvc
                                                         break;
                                                     case "jwt":
                                                         user = attribute.AuthorizeAuthToken(app.HttpRequest, ConfigurationManager.ApplicationSecretKey);
+                                                        Headers["Auth-Token"] = user.Token;
                                                         break;
                                                     default:
                                                         throw new NotImplementedException("Not implemented for other authentication drivers");
@@ -304,7 +308,13 @@ namespace Mvc
                                                 {
                                                     app.SetUser(user);
                                                     IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
-                                                    Headers = app.HttpContext.Headers;
+                                                    for(int i = 0; i < app.HttpContext.Headers.Count; i++)
+                                                    {
+                                                        Headers.Set(
+                                                            app.HttpContext.Headers.Keys[i],
+                                                            app.HttpContext.Headers[i]
+                                                        );
+                                                    }
                                                     return result;
                                                 }
                                                 return (int)401;
@@ -312,7 +322,13 @@ namespace Mvc
                                             else
                                             {
                                                 IActionResult result = (IActionResult)method.Invoke(app, new object[] { });
-                                                Headers = app.HttpContext.Headers;
+                                                for (int i = 0; i < app.HttpContext.Headers.Count; i++)
+                                                {
+                                                    Headers.Set(
+                                                        app.HttpContext.Headers.Keys[i],
+                                                        app.HttpContext.Headers[i]
+                                                    );
+                                                }
                                                 return result;
                                             }
                                         }

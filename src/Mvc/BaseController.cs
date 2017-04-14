@@ -108,6 +108,11 @@ namespace Mvc
             return new Json(json, code);
         }
 
+        public IActionResult Content(string text, int code, string redirect)
+        {
+            return new Content(text, code, redirect);
+        }
+
         public IActionResult View(string template, object data, int code)
         {
             return new View(template, data, code, HttpContext.PhysicalPath, Route);
