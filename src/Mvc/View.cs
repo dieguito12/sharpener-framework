@@ -47,5 +47,10 @@ namespace Mvc
             return "text/html";
         }
 
+        public string Redirection()
+        {
+            return "";
+        }
+
     }
 }

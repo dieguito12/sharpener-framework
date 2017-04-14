@@ -30,11 +30,19 @@ namespace App1.Models
         [Column("last_click")]
         public DateTime LastClick { get; set; }
 
-        [Column("location")]
-        public string Location { get; set; }
-
         [Column("created")]
         public DateTime Created { get; set; }
+
+        [Column("deleted")]
+        public bool Deleted { get; set; }
+
+        public virtual List<RefererModel> Referers { get; set; }
+
+        public virtual List<AgentModel> Agents { get; set; }
+
+        public virtual List<PlatformModel> Platforms { get; set; }
+
+        public virtual List<LocationModel> Locations { get; set; }
 
         public virtual UserModel User { get; set; }
     }

@@ -15,5 +15,7 @@ namespace Mvc
 
         int Code();
 
+        string Redirection();
+
     }
 }
