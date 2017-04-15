@@ -10,10 +10,18 @@ using System.IO;
 
 namespace Mvc
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    /// <summary>
+    /// Representative class of an authorization attribute for the controllers methods.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Method)]
     public class AuthorizeAttribute : FilterAttribute
     {
-        
+        /// <summary>
+        /// Authorize an incoming Auth Token and returns the corresponded user or null if is not valid.
+        /// </summary>
+        /// <param name="request">A Request instance with the incoming request information.</param>
+        /// <param name="secret">A string representing the secret key to encode and decode the token.</param>
+        /// <returns>Corresponded User of the token, or null if is not valid</returns>
         public User AuthorizeAuthToken(Request request, string secret)
         {
             string token = request.Headers["Auth-Token"];
@@ -44,6 +52,11 @@ namespace Mvc
             return null;
         }
 
+        /// <summary>
+        /// Authorize session and returns the corresponded user or null if is not valid.
+        /// </summary>
+        /// <param name="session">A string the presenting the session</param>
+        /// <returns>Corresponded User of the token, or null if is not valid</returns>
         public User AuthorizeSession(string session)
         {
             return Session.AuthenticateSession(session);

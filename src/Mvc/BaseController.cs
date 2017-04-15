@@ -10,34 +10,56 @@ using System.Threading.Tasks;
 
 namespace Mvc
 {
+    /// <summary>
+    /// Representative class of a base controller
+    /// </summary>
     public class BaseController
     {
+        /// <summary>
+        /// Current logged in user.
+        /// </summary>
         private User _user;
 
+        /// <summary>
+        /// A context information from the http server.
+        /// </summary>
         public HttpContext HttpContext
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// The incoming request from the server.
+        /// </summary>
         public Request HttpRequest
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// The current route that is being used.
+        /// </summary>
         public Route Route
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// A session dictionary to store volatile data.
+        /// </summary>
         public Dictionary<string, object> Session
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets of sets the current user
+        /// </summary>
+        /// <remarks>When it is set it is validated if is using the jwt driver</remarks>
         public User User
         {
             get
@@ -72,6 +94,9 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Unsets the current user.
+        /// </summary>
         public void UnsetUser()
         {
             JObject json = JObject.Parse(File.ReadAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json"));
@@ -93,26 +118,54 @@ namespace Mvc
             _user = null;
         }
 
+        /// <summary>
+        /// Constructor of the BaseController class.
+        /// </summary>
         public BaseController()
         {
             HttpContext = new HttpContext();
         }
 
+        /// <summary>
+        /// Sets the current user
+        /// </summary>
+        /// <param name="user">New User object</param>
+        /// <remarks>Just internal user</remarks>
         internal void SetUser(User user)
         {
             _user = user;
         }
 
+        /// <summary>
+        /// Creates a new Json response
+        /// </summary>
+        /// <param name="json">A string representing the json to respond.</param>
+        /// <param name="code">An int representing the status code.</param>
+        /// <returns>A Json object with the response.</returns>
         public IActionResult Json(string json, int code)
         {
             return new Json(json, code);
         }
 
+        /// <summary>
+        /// Creates a new Content response
+        /// </summary>
+        /// <param name="text">A string of raw text of the response</param>
+        /// <param name="code">An int representing the status code</param>
+        /// <param name="redirect">A string representing the redirection url</param>
+        /// <returns>A Content object with the response</returns>
         public IActionResult Content(string text, int code, string redirect)
         {
             return new Content(text, code, redirect);
         }
 
+        /// <summary>
+        /// Creates a new View response
+        /// </summary>
+        /// <param name="template">A string representing the name of the view template.</param>
+        /// <param name="data">An object with the data to be passed to the view template.</param>
+        /// <param name="code">An int representing the status code.</param>
+        /// <returns>A View object with the response data.</returns>
         public IActionResult View(string template, object data, int code)
         {
             return new View(template, data, code, HttpContext.PhysicalPath, Route);

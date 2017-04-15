@@ -1,0 +1,83 @@
+\hypertarget{class_mvc_1_1_authorize_attribute}{}\section{Mvc.\+Authorize\+Attribute Class Reference}
+\label{class_mvc_1_1_authorize_attribute}\index{Mvc.\+Authorize\+Attribute@{Mvc.\+Authorize\+Attribute}}
+
+
+Representative class of an authorization attribute for the controllers methods.  
+
+
+Inheritance diagram for Mvc.\+Authorize\+Attribute\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_mvc_1_1_authorize_attribute}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mvc_1_1_user}{User} \hyperlink{class_mvc_1_1_authorize_attribute_a6e307e8177daede23e820c499990cf69}{Authorize\+Auth\+Token} (\hyperlink{class_mvc_1_1_request}{Request} request, string secret)
+\begin{DoxyCompactList}\small\item\em Authorize an incoming Auth Token and returns the corresponded user or null if is not valid. \end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_user}{User} \hyperlink{class_mvc_1_1_authorize_attribute_aad3c74835450cca65e86f79aca028de4}{Authorize\+Session} (string session)
+\begin{DoxyCompactList}\small\item\em Authorize session and returns the corresponded user or null if is not valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of an authorization attribute for the controllers methods. 
+
+
+
+Definition at line 17 of file Authorize\+Attribute.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_authorize_attribute_a6e307e8177daede23e820c499990cf69}\label{class_mvc_1_1_authorize_attribute_a6e307e8177daede23e820c499990cf69}} 
+\index{Mvc\+::\+Authorize\+Attribute@{Mvc\+::\+Authorize\+Attribute}!Authorize\+Auth\+Token@{Authorize\+Auth\+Token}}
+\index{Authorize\+Auth\+Token@{Authorize\+Auth\+Token}!Mvc\+::\+Authorize\+Attribute@{Mvc\+::\+Authorize\+Attribute}}
+\subsubsection{\texorpdfstring{Authorize\+Auth\+Token()}{AuthorizeAuthToken()}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_user}{User} Mvc.\+Authorize\+Attribute.\+Authorize\+Auth\+Token (\begin{DoxyParamCaption}\item[{\hyperlink{class_mvc_1_1_request}{Request}}]{request,  }\item[{string}]{secret }\end{DoxyParamCaption})}
+
+
+
+Authorize an incoming Auth Token and returns the corresponded user or null if is not valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & A \hyperlink{class_mvc_1_1_request}{Request} instance with the incoming request information.\\
+\hline
+{\em secret} & A string representing the secret key to encode and decode the token.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponded \hyperlink{class_mvc_1_1_user}{User} of the token, or null if is not valid
+\end{DoxyReturn}
+
+
+Definition at line 25 of file Authorize\+Attribute.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_authorize_attribute_aad3c74835450cca65e86f79aca028de4}\label{class_mvc_1_1_authorize_attribute_aad3c74835450cca65e86f79aca028de4}} 
+\index{Mvc\+::\+Authorize\+Attribute@{Mvc\+::\+Authorize\+Attribute}!Authorize\+Session@{Authorize\+Session}}
+\index{Authorize\+Session@{Authorize\+Session}!Mvc\+::\+Authorize\+Attribute@{Mvc\+::\+Authorize\+Attribute}}
+\subsubsection{\texorpdfstring{Authorize\+Session()}{AuthorizeSession()}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_user}{User} Mvc.\+Authorize\+Attribute.\+Authorize\+Session (\begin{DoxyParamCaption}\item[{string}]{session }\end{DoxyParamCaption})}
+
+
+
+Authorize session and returns the corresponded user or null if is not valid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em session} & A string the presenting the session\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponded \hyperlink{class_mvc_1_1_user}{User} of the token, or null if is not valid
+\end{DoxyReturn}
+
+
+Definition at line 60 of file Authorize\+Attribute.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Authorize\+Attribute.\+cs\end{DoxyCompactItemize}

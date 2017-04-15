@@ -1,0 +1,202 @@
+\hypertarget{class_mvc_1_1_json}{}\section{Mvc.\+Json Class Reference}
+\label{class_mvc_1_1_json}\index{Mvc.\+Json@{Mvc.\+Json}}
+
+
+Representative class of a json response  
+
+
+Inheritance diagram for Mvc.\+Json\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mvc_1_1_json}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mvc_1_1_json_a0b86fdb1b35bca88ae21f0f2282a710d}{Json} (string json, int code)
+\begin{DoxyCompactList}\small\item\em Constructor of the \hyperlink{class_mvc_1_1_json}{Json} class. \end{DoxyCompactList}\item 
+Memory\+Stream \hyperlink{class_mvc_1_1_json_ae94043bfe0049a44c8b0c61a13b61ac9}{Response} ()
+\begin{DoxyCompactList}\small\item\em Gets the response of the controller in a stream. \end{DoxyCompactList}\item 
+int \hyperlink{class_mvc_1_1_json_aab9ce2b098ce0b4bfe8ad835a33e71d5}{Code} ()
+\begin{DoxyCompactList}\small\item\em Gets the status code of the response. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_json_aa2572df4640e171276244cbb14070284}{Content\+Type} ()
+\begin{DoxyCompactList}\small\item\em Gets the content type of the response. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_json_af8cd874b2a4c9692f0200bde97d40c87}{Redirection} ()
+\begin{DoxyCompactList}\small\item\em Gets the url where the response is going to redirect (if there is any). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{class_mvc_1_1_json_a7f2eac02ea84b7b0c9c277d54e347c8a}{Jsonify} (Name\+Value\+Collection values)
+\begin{DoxyCompactList}\small\item\em An static method that turns a Name\+Value\+Collection into a json string. \end{DoxyCompactList}\item 
+static Name\+Value\+Collection \hyperlink{class_mvc_1_1_json_a6876cfad310dbe0a704204bec09c9d66}{Serialize} (string json)
+\begin{DoxyCompactList}\small\item\em An static method that turns a json string into a Name\+Value\+Collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of a json response 
+
+
+
+Definition at line 16 of file Json.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_json_a0b86fdb1b35bca88ae21f0f2282a710d}\label{class_mvc_1_1_json_a0b86fdb1b35bca88ae21f0f2282a710d}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Json@{Json}}
+\index{Json@{Json}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Json()}{Json()}}
+{\footnotesize\ttfamily Mvc.\+Json.\+Json (\begin{DoxyParamCaption}\item[{string}]{json,  }\item[{int}]{code }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \hyperlink{class_mvc_1_1_json}{Json} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A string representing the json to respond.\\
+\hline
+{\em code} & An int representing the status code.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 70 of file Json.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_json_aab9ce2b098ce0b4bfe8ad835a33e71d5}\label{class_mvc_1_1_json_aab9ce2b098ce0b4bfe8ad835a33e71d5}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Code@{Code}}
+\index{Code@{Code}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Code()}{Code()}}
+{\footnotesize\ttfamily int Mvc.\+Json.\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the status code of the response. 
+
+\begin{DoxyReturn}{Returns}
+An int representing the status code
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_ab6b85ae50597587395df99b972c3d26b}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 90 of file Json.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_json_aa2572df4640e171276244cbb14070284}\label{class_mvc_1_1_json_aa2572df4640e171276244cbb14070284}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Content\+Type@{Content\+Type}}
+\index{Content\+Type@{Content\+Type}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Content\+Type()}{ContentType()}}
+{\footnotesize\ttfamily string Mvc.\+Json.\+Content\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the content type of the response. 
+
+\begin{DoxyReturn}{Returns}
+A string representing the content type of the response
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a8ad08f29bba90dfbe06d7a00465af10a}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 99 of file Json.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_json_a7f2eac02ea84b7b0c9c277d54e347c8a}\label{class_mvc_1_1_json_a7f2eac02ea84b7b0c9c277d54e347c8a}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Jsonify@{Jsonify}}
+\index{Jsonify@{Jsonify}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Jsonify()}{Jsonify()}}
+{\footnotesize\ttfamily static string Mvc.\+Json.\+Jsonify (\begin{DoxyParamCaption}\item[{Name\+Value\+Collection}]{values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+An static method that turns a Name\+Value\+Collection into a json string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em values} & Name\+Value\+Collection with the json values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing a json.
+\end{DoxyReturn}
+
+
+Definition at line 33 of file Json.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_json_af8cd874b2a4c9692f0200bde97d40c87}\label{class_mvc_1_1_json_af8cd874b2a4c9692f0200bde97d40c87}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Redirection@{Redirection}}
+\index{Redirection@{Redirection}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Redirection()}{Redirection()}}
+{\footnotesize\ttfamily string Mvc.\+Json.\+Redirection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the url where the response is going to redirect (if there is any). 
+
+\begin{DoxyReturn}{Returns}
+A string representing the redirection url
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a036707da116ea300eae90e105b8d1ced}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 108 of file Json.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_json_ae94043bfe0049a44c8b0c61a13b61ac9}\label{class_mvc_1_1_json_ae94043bfe0049a44c8b0c61a13b61ac9}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Response@{Response}}
+\index{Response@{Response}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Response()}{Response()}}
+{\footnotesize\ttfamily Memory\+Stream Mvc.\+Json.\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the response of the controller in a stream. 
+
+\begin{DoxyReturn}{Returns}
+Memory\+Stream that represents the response of the controller.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a7cf7423071384c7b2bac75a5f4d6e25c}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 80 of file Json.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_json_a6876cfad310dbe0a704204bec09c9d66}\label{class_mvc_1_1_json_a6876cfad310dbe0a704204bec09c9d66}} 
+\index{Mvc\+::\+Json@{Mvc\+::\+Json}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!Mvc\+::\+Json@{Mvc\+::\+Json}}
+\subsubsection{\texorpdfstring{Serialize()}{Serialize()}}
+{\footnotesize\ttfamily static Name\+Value\+Collection Mvc.\+Json.\+Serialize (\begin{DoxyParamCaption}\item[{string}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+An static method that turns a json string into a Name\+Value\+Collection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A string representing a json\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Name\+Value\+Collection with the json data.
+\end{DoxyReturn}
+
+
+Definition at line 54 of file Json.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Json.\+cs\end{DoxyCompactItemize}

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Mvc
 {
+    /// <summary>
+    /// Representative abstract class of a filter attribute.
+    /// </summary>
     public abstract class FilterAttribute : Attribute
     {
         //

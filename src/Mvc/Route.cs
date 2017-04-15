@@ -6,30 +6,35 @@ using System.Threading.Tasks;
 
 namespace Mvc
 {
+    /// <summary>
+    /// Representative class of a route.
+    /// </summary>
     public class Route
     {
+        /// <summary>
+        /// The virtual path of this route.
+        /// </summary>
         private string _path;
 
+        /// <summary>
+        /// The Http method (GET, POST, PUT) of this route.
+        /// </summary>
         private string _method;
 
+        /// <summary>
+        /// The controller which this route points to.
+        /// </summary>
         private string _controller;
 
+        /// <summary>
+        /// The controller action which this route points to.
+        /// </summary>
         private string _action;
 
-        private Dictionary<string, object> _parameters;
 
-        public Dictionary<string, object> Parameters
-        {
-            get
-            {
-                return _parameters;
-            }
-            private set
-            {
-                _parameters = value;
-            }
-        }
-
+        /// <summary>
+        /// Gets the virtual path of this route.
+        /// </summary>
         public string Path
         {
             get
@@ -42,6 +47,9 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets the http method of the route.
+        /// </summary>
         public string Method
         {
             get
@@ -54,6 +62,9 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets the controller name which this route points to.
+        /// </summary>
         public string Controller
         {
             get
@@ -66,6 +77,9 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets the controller action name which this route points to.
+        /// </summary>
         public string Action
         {
             get
@@ -78,6 +92,13 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Constructor of the Route class.
+        /// </summary>
+        /// <param name="path">The virtual path of this route.</param>
+        /// <param name="method">The Http method (GET, POST, PUT) of this route.</param>
+        /// <param name="controller">The controller which this route points to.</param>
+        /// <param name="action">The controller action which this route points to.</param>
         public Route(string path, string method, string controller, string action)
         {
             _path = path;

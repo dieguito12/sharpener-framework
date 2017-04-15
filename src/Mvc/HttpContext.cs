@@ -7,16 +7,34 @@ using System.Threading.Tasks;
 
 namespace Mvc
 {
+    /// <summary>
+    /// Representative class of the context information of the http server.
+    /// </summary>
     public class HttpContext
     {
+        /// <summary>
+        /// A string representing the physical path where the dll of the app is.
+        /// </summary>
         string _physicalPath;
 
+        /// <summary>
+        /// A ConfigurationManager object representing the loaded configuration of the app.
+        /// </summary>
         private ConfigurationManager _configurationManager;
 
+        /// <summary>
+        /// A NameValueCollection representing the headers of the response.
+        /// </summary>
         private NameValueCollection _headers = new NameValueCollection();
 
+        /// <summary>
+        /// The current session string.
+        /// </summary>
         private string _session;
 
+        /// <summary>
+        /// Gets and sets the headers of the response.
+        /// </summary>
         public NameValueCollection Headers
         {
             get
@@ -29,6 +47,9 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets and sets the session of the app.
+        /// </summary>
         public string Session
         {
             get
@@ -41,25 +62,31 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets a configuration manager.
+        /// </summary>
         public ConfigurationManager ConfigurationManager
         {
             get
             {
                 return _configurationManager;
             }
-            set
+            internal set
             {
                 _configurationManager = value;
             }
         }
 
+        /// <summary>
+        /// Gets and the physycal path of the app.
+        /// </summary>
         public string PhysicalPath
         {
             get
             {
                 return _physicalPath;
             }
-            set
+            internal set
             {
                 _physicalPath = value;
             }

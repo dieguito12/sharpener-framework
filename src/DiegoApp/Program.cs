@@ -12,8 +12,6 @@ namespace DiegoApp
 {
     class Program
     {
-        private static string rootPath = @"C:\Users\dieguito12\Code\sharpener-framework\src";
-
         static void Main(string[] args)
         {
             using (var server = new HttpServer(HttpConfig.GetPort()))
@@ -89,7 +87,18 @@ namespace DiegoApp
                             if (site == null || e.Request.Path.Contains('.'))
                             {
                                 byte[] data;
-                                data = File.ReadAllBytes(rootPath + e.Request.Path.Replace("/", "\\"));
+                                string currentPath = e.Request.Path.Replace("/", "\\");
+                                if (site != null)
+                                {
+                                    currentPath = site.PhysicalPath + currentPath.Replace(site.VirtualPath.Replace("/", "\\"), "");
+                                }
+                                //Linux
+                                /*if (site != null)
+                                {
+                                    currentPath = site.PhysicalPath + currentPath.Replace(site.VirtualPath, "");
+                                }*/
+
+                                data = File.ReadAllBytes(currentPath);
                                 e.Response.StatusCode = 200;
                                 string file = pathElements[pathElements.Length - 1];
                                 string extension = file.Split('.')[file.Split('.').Length - 1];

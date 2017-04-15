@@ -1,0 +1,142 @@
+\hypertarget{class_mvc_1_1_request}{}\section{Mvc.\+Request Class Reference}
+\label{class_mvc_1_1_request}\index{Mvc.\+Request@{Mvc.\+Request}}
+
+
+Representative class of a parsed request  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mvc_1_1_request_a8d03461379f0d929fb86b39dd078f458}{Request} (string path, Name\+Value\+Collection parameters, Dictionary$<$ string, \hyperlink{class_mvc_1_1_http_file}{Http\+File} $>$ files, Name\+Value\+Collection headers, Name\+Value\+Collection query\+Params)
+\begin{DoxyCompactList}\small\item\em Constructor of the \hyperlink{class_mvc_1_1_request}{Request} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Name\+Value\+Collection \hyperlink{class_mvc_1_1_request_a98ac9e3caa73bc6512a760ed44d82a33}{Headers}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the headers of the request. \end{DoxyCompactList}\item 
+Name\+Value\+Collection \hyperlink{class_mvc_1_1_request_a5ed7768ef9fa97d550a09186e1272f5b}{Query\+Params}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the query string parameters of the request. \end{DoxyCompactList}\item 
+Name\+Value\+Collection \hyperlink{class_mvc_1_1_request_a26c0fa235c232271f53eb6ca20da121d}{Parameters}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the body parameters of the request. \end{DoxyCompactList}\item 
+Dictionary$<$ string, \hyperlink{class_mvc_1_1_http_file}{Http\+File} $>$ \hyperlink{class_mvc_1_1_request_aac2c6182ecc7705b2e8cc011cdf53fea}{Files}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the dictionary of files \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_request_ab12e18ae01b18842ea97d8dc5ea8b9f9}{Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the path of the url \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of a parsed request 
+
+
+
+Definition at line 14 of file Request.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_request_a8d03461379f0d929fb86b39dd078f458}\label{class_mvc_1_1_request_a8d03461379f0d929fb86b39dd078f458}} 
+\index{Mvc\+::\+Request@{Mvc\+::\+Request}!Request@{Request}}
+\index{Request@{Request}!Mvc\+::\+Request@{Mvc\+::\+Request}}
+\subsubsection{\texorpdfstring{Request()}{Request()}}
+{\footnotesize\ttfamily Mvc.\+Request.\+Request (\begin{DoxyParamCaption}\item[{string}]{path,  }\item[{Name\+Value\+Collection}]{parameters,  }\item[{Dictionary$<$ string, \hyperlink{class_mvc_1_1_http_file}{Http\+File} $>$}]{files,  }\item[{Name\+Value\+Collection}]{headers,  }\item[{Name\+Value\+Collection}]{query\+Params }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \hyperlink{class_mvc_1_1_request}{Request} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & A string representing the path of the url.\\
+\hline
+{\em parameters} & A Name\+Value\+Collectoin representing the body parameters of the request.\\
+\hline
+{\em files} & A Dictionary representing the files in the request.\\
+\hline
+{\em headers} & A Name\+Value\+Collection representing the headers of the request\\
+\hline
+{\em query\+Params} & A Name\+Valud\+Collection representing the query string of the url.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 24 of file Request.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_request_aac2c6182ecc7705b2e8cc011cdf53fea}\label{class_mvc_1_1_request_aac2c6182ecc7705b2e8cc011cdf53fea}} 
+\index{Mvc\+::\+Request@{Mvc\+::\+Request}!Files@{Files}}
+\index{Files@{Files}!Mvc\+::\+Request@{Mvc\+::\+Request}}
+\subsubsection{\texorpdfstring{Files}{Files}}
+{\footnotesize\ttfamily Dictionary$<$string, \hyperlink{class_mvc_1_1_http_file}{Http\+File}$>$ Mvc.\+Request.\+Files\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the dictionary of files 
+
+
+
+Definition at line 51 of file Request.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_request_a98ac9e3caa73bc6512a760ed44d82a33}\label{class_mvc_1_1_request_a98ac9e3caa73bc6512a760ed44d82a33}} 
+\index{Mvc\+::\+Request@{Mvc\+::\+Request}!Headers@{Headers}}
+\index{Headers@{Headers}!Mvc\+::\+Request@{Mvc\+::\+Request}}
+\subsubsection{\texorpdfstring{Headers}{Headers}}
+{\footnotesize\ttfamily Name\+Value\+Collection Mvc.\+Request.\+Headers\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the headers of the request. 
+
+
+
+Definition at line 36 of file Request.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_request_a26c0fa235c232271f53eb6ca20da121d}\label{class_mvc_1_1_request_a26c0fa235c232271f53eb6ca20da121d}} 
+\index{Mvc\+::\+Request@{Mvc\+::\+Request}!Parameters@{Parameters}}
+\index{Parameters@{Parameters}!Mvc\+::\+Request@{Mvc\+::\+Request}}
+\subsubsection{\texorpdfstring{Parameters}{Parameters}}
+{\footnotesize\ttfamily Name\+Value\+Collection Mvc.\+Request.\+Parameters\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the body parameters of the request. 
+
+
+
+Definition at line 46 of file Request.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_request_ab12e18ae01b18842ea97d8dc5ea8b9f9}\label{class_mvc_1_1_request_ab12e18ae01b18842ea97d8dc5ea8b9f9}} 
+\index{Mvc\+::\+Request@{Mvc\+::\+Request}!Path@{Path}}
+\index{Path@{Path}!Mvc\+::\+Request@{Mvc\+::\+Request}}
+\subsubsection{\texorpdfstring{Path}{Path}}
+{\footnotesize\ttfamily string Mvc.\+Request.\+Path\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the path of the url 
+
+
+
+Definition at line 57 of file Request.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_request_a5ed7768ef9fa97d550a09186e1272f5b}\label{class_mvc_1_1_request_a5ed7768ef9fa97d550a09186e1272f5b}} 
+\index{Mvc\+::\+Request@{Mvc\+::\+Request}!Query\+Params@{Query\+Params}}
+\index{Query\+Params@{Query\+Params}!Mvc\+::\+Request@{Mvc\+::\+Request}}
+\subsubsection{\texorpdfstring{Query\+Params}{QueryParams}}
+{\footnotesize\ttfamily Name\+Value\+Collection Mvc.\+Request.\+Query\+Params\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the query string parameters of the request. 
+
+
+
+Definition at line 41 of file Request.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Request.\+cs\end{DoxyCompactItemize}

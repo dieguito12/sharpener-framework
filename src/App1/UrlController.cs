@@ -337,9 +337,14 @@ namespace App1
                     pictureName = pictureName.Replace(".", "");
 
                     // Linux
-                    /*ProcessStartInfo startInfo = new ProcessStartInfo() { FileName = "/bin/bash", Arguments = "phantomjs screenshot.js " + HttpRequest.Parameters["url"] + " " + pictureName + ".jpg", };
+                    /*ProcessStartInfo startInfo = new ProcessStartInfo() { FileName = "/usr/local/bin/phantomjs", Arguments = "--ignore-ssl-errors=true --ssl-protocol=any ./App1/screenshot.js " + HttpRequest.Parameters["url"] + " ./App1/screenshots/" + pictureName + ".jpg"};
                     Process proc = new Process() { StartInfo = startInfo, };
-                    proc.Start();*/
+                    startInfo.CreateNoWindow = true;
+                    startInfo.UseShellExecute = false;
+                    proc.Start();
+                    proc.WaitForExit();
+                    proc.Close();
+                    */
 
                     //Windows
                     Process p = new Process();
@@ -351,6 +356,7 @@ namespace App1
                     p.StartInfo = psi;
                     p.Start();
                     p.WaitForExit();
+                    p.Close();
 
                     context.Urls.Add(url);
                     context.SaveChanges();

@@ -1,0 +1,213 @@
+\hypertarget{class_mvc_1_1_session}{}\section{Mvc.\+Session Class Reference}
+\label{class_mvc_1_1_session}\index{Mvc.\+Session@{Mvc.\+Session}}
+
+
+Representative class of the unique application session  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_mvc_1_1_session_af8c262ab22ef4a5becba55ebc8462c8e}{Session\+Exists} (string session)
+\begin{DoxyCompactList}\small\item\em Verifies if the given session exists \end{DoxyCompactList}\item 
+static string \hyperlink{class_mvc_1_1_session_ab24193deeef697f9d6460050883b483c}{Refresh\+Token} (int days, string secret, string incoming\+Token)
+\begin{DoxyCompactList}\small\item\em Refreshes a token \end{DoxyCompactList}\item 
+static void \hyperlink{class_mvc_1_1_session_a0dd0abe92e2b3450210cfc92dfbd9ca3}{Delete\+Expired\+Sessions} (string secret)
+\begin{DoxyCompactList}\small\item\em Deletes all the sessions that has expired \end{DoxyCompactList}\item 
+static string \hyperlink{class_mvc_1_1_session_a0275ee719fa9f087ad8f0b96fc2a88a3}{Get\+Current\+Session} ()
+\begin{DoxyCompactList}\small\item\em Gets the current application session. \end{DoxyCompactList}\item 
+static \hyperlink{class_mvc_1_1_user}{User} \hyperlink{class_mvc_1_1_session_a348ab46e42ba38bd10246fb39541d1e8}{Authenticate\+Session} (string secret)
+\begin{DoxyCompactList}\small\item\em Authenticates the current session \end{DoxyCompactList}\item 
+static void \hyperlink{class_mvc_1_1_session_ac169bdeb3767baa5c632ece305d448f3}{Set\+Session} (string session)
+\begin{DoxyCompactList}\small\item\em Sets a new session. \end{DoxyCompactList}\item 
+static void \hyperlink{class_mvc_1_1_session_a6af0398d88965bc0f24f0213be2f2096}{Refresh\+Session} (int minutes, string secret)
+\begin{DoxyCompactList}\small\item\em Refreshes the current session. \end{DoxyCompactList}\item 
+static string \hyperlink{class_mvc_1_1_session_aeb7476f51d94c0d95d997b5b1ae85f46}{Generate\+Auth\+Session} (\hyperlink{class_mvc_1_1_user}{User} user, string secret)
+\begin{DoxyCompactList}\small\item\em Generates and sets a new session. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of the unique application session 
+
+
+
+Definition at line 17 of file Session.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_session_a348ab46e42ba38bd10246fb39541d1e8}\label{class_mvc_1_1_session_a348ab46e42ba38bd10246fb39541d1e8}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Authenticate\+Session@{Authenticate\+Session}}
+\index{Authenticate\+Session@{Authenticate\+Session}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Authenticate\+Session()}{AuthenticateSession()}}
+{\footnotesize\ttfamily static \hyperlink{class_mvc_1_1_user}{User} Mvc.\+Session.\+Authenticate\+Session (\begin{DoxyParamCaption}\item[{string}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Authenticates the current session 
+
+
+\begin{DoxyParams}{Parameters}
+{\em secret} & Secret key to encode and decode the session\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The corresponded user of the session, null if is not valid
+\end{DoxyReturn}
+
+
+Definition at line 133 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_a0dd0abe92e2b3450210cfc92dfbd9ca3}\label{class_mvc_1_1_session_a0dd0abe92e2b3450210cfc92dfbd9ca3}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Delete\+Expired\+Sessions@{Delete\+Expired\+Sessions}}
+\index{Delete\+Expired\+Sessions@{Delete\+Expired\+Sessions}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Delete\+Expired\+Sessions()}{DeleteExpiredSessions()}}
+{\footnotesize\ttfamily static void Mvc.\+Session.\+Delete\+Expired\+Sessions (\begin{DoxyParamCaption}\item[{string}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Deletes all the sessions that has expired 
+
+
+\begin{DoxyParams}{Parameters}
+{\em secret} & Secret key of the application to decode and encode the sessions.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_aeb7476f51d94c0d95d997b5b1ae85f46}\label{class_mvc_1_1_session_aeb7476f51d94c0d95d997b5b1ae85f46}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Generate\+Auth\+Session@{Generate\+Auth\+Session}}
+\index{Generate\+Auth\+Session@{Generate\+Auth\+Session}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Generate\+Auth\+Session()}{GenerateAuthSession()}}
+{\footnotesize\ttfamily static string Mvc.\+Session.\+Generate\+Auth\+Session (\begin{DoxyParamCaption}\item[{\hyperlink{class_mvc_1_1_user}{User}}]{user,  }\item[{string}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generates and sets a new session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \hyperlink{class_mvc_1_1_user}{User} that will belongs the session\\
+\hline
+{\em secret} & Secret key to encode the new session\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new generated session.
+\end{DoxyReturn}
+
+
+Definition at line 199 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_a0275ee719fa9f087ad8f0b96fc2a88a3}\label{class_mvc_1_1_session_a0275ee719fa9f087ad8f0b96fc2a88a3}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Get\+Current\+Session@{Get\+Current\+Session}}
+\index{Get\+Current\+Session@{Get\+Current\+Session}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Get\+Current\+Session()}{GetCurrentSession()}}
+{\footnotesize\ttfamily static string Mvc.\+Session.\+Get\+Current\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the current application session. 
+
+\begin{DoxyReturn}{Returns}
+Current session
+\end{DoxyReturn}
+
+
+Definition at line 123 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_a6af0398d88965bc0f24f0213be2f2096}\label{class_mvc_1_1_session_a6af0398d88965bc0f24f0213be2f2096}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Refresh\+Session@{Refresh\+Session}}
+\index{Refresh\+Session@{Refresh\+Session}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Refresh\+Session()}{RefreshSession()}}
+{\footnotesize\ttfamily static void Mvc.\+Session.\+Refresh\+Session (\begin{DoxyParamCaption}\item[{int}]{minutes,  }\item[{string}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Refreshes the current session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & Minutes to add to the expiration time\\
+\hline
+{\em secret} & Secret key to encode and decode the session\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 169 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_ab24193deeef697f9d6460050883b483c}\label{class_mvc_1_1_session_ab24193deeef697f9d6460050883b483c}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Refresh\+Token@{Refresh\+Token}}
+\index{Refresh\+Token@{Refresh\+Token}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Refresh\+Token()}{RefreshToken()}}
+{\footnotesize\ttfamily static string Mvc.\+Session.\+Refresh\+Token (\begin{DoxyParamCaption}\item[{int}]{days,  }\item[{string}]{secret,  }\item[{string}]{incoming\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Refreshes a token 
+
+
+\begin{DoxyParams}{Parameters}
+{\em days} & Amount of days to add to the expiration time\\
+\hline
+{\em secret} & Secret key to decode and encode the token\\
+\hline
+{\em incoming\+Token} & The token to refresh\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new refreshed token
+\end{DoxyReturn}
+
+
+Definition at line 46 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_af8c262ab22ef4a5becba55ebc8462c8e}\label{class_mvc_1_1_session_af8c262ab22ef4a5becba55ebc8462c8e}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Session\+Exists@{Session\+Exists}}
+\index{Session\+Exists@{Session\+Exists}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Session\+Exists()}{SessionExists()}}
+{\footnotesize\ttfamily static bool Mvc.\+Session.\+Session\+Exists (\begin{DoxyParamCaption}\item[{string}]{session }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Verifies if the given session exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em session} & \hyperlink{class_mvc_1_1_session}{Session} to verify\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if exist, false if not.
+\end{DoxyReturn}
+
+
+Definition at line 34 of file Session.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_session_ac169bdeb3767baa5c632ece305d448f3}\label{class_mvc_1_1_session_ac169bdeb3767baa5c632ece305d448f3}} 
+\index{Mvc\+::\+Session@{Mvc\+::\+Session}!Set\+Session@{Set\+Session}}
+\index{Set\+Session@{Set\+Session}!Mvc\+::\+Session@{Mvc\+::\+Session}}
+\subsubsection{\texorpdfstring{Set\+Session()}{SetSession()}}
+{\footnotesize\ttfamily static void Mvc.\+Session.\+Set\+Session (\begin{DoxyParamCaption}\item[{string}]{session }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Sets a new session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em session} & \hyperlink{class_mvc_1_1_session}{Session} to set\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 159 of file Session.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Session.\+cs\end{DoxyCompactItemize}

@@ -28,8 +28,14 @@ namespace Mvc
     /// </summary>
     public class PHttpApplication : PHttp.Application.IPHttpApplication
     {
+        /// <summary>
+        /// Event that is triggered before the application starts
+        /// </summary>
         public event PHttp.Application.PreApplicationStartMethod PreApplicationStart;
 
+        /// <summary>
+        /// Event that is triggered when the application starts
+        /// </summary>
         public event PHttp.Application.ApplicationStartMethod ApplicationStart;
 
         /// <summary>
@@ -37,8 +43,14 @@ namespace Mvc
         /// </summary>
         private string _name;
 
+        /// <summary>
+        /// Physical path of the application dll.
+        /// </summary>
         private string _physicalPath;
 
+        /// <summary>
+        /// String of the routing pattern
+        /// </summary>
         private string _routingMapPattern;
 
         /// <summary>
@@ -46,14 +58,29 @@ namespace Mvc
         /// </summary>
         private string _virtualPath;
 
+        /// <summary>
+        /// The list of all available routes of the app.
+        /// </summary>
         private List<Route> _routes;
 
+        /// <summary>
+        /// Configuration manager of the app.
+        /// </summary>
         private ConfigurationManager _configurationManager;
 
+        /// <summary>
+        /// Path of the application configuration file.
+        /// </summary>
         private string _configurationPath;
 
+        /// <summary>
+        /// Headers of the incoming request.
+        /// </summary>
         private NameValueCollection _headers = new NameValueCollection();
 
+        /// <summary>
+        /// Gets the headers of the app response to the web server
+        /// </summary>
         public NameValueCollection Headers
         {
             get
@@ -66,11 +93,18 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets the headers of the app response to the web server
+        /// </summary>
+        /// <returns>NameValueCollection with the headers</returns>
         public NameValueCollection GetHeaders()
         {
             return Headers;
         }
 
+        /// <summary>
+        /// Gets the path of the application configuration file.
+        /// </summary>
         public string ConfigurationPath
         {
             get
@@ -84,7 +118,7 @@ namespace Mvc
         }
 
         /// <summary>
-        /// Gets or sets the name of the application.</summary>
+        /// Gets the name of the application.</summary>
         /// <value>
         /// String value.</value>
         public string Name
@@ -100,14 +134,16 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets the physical path of the application dll.
+        /// </summary>
         public string PhysicalPath
         {
             get
             {
                 return _physicalPath;
             }
-
-            set
+            internal set
             {
                 _physicalPath = value;
             }
@@ -130,12 +166,18 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Constructor of the PHttpApplication class.
+        /// </summary>
         public PHttpApplication()
         {
             _routes = new List<Route>();
             _configurationPath = "app.json";
         }
 
+        /// <summary>
+        /// Creates the list of available routes of the application.
+        /// </summary>
         private void AddRoutes()
         {
             BaseController app = new BaseController();
@@ -177,11 +219,22 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Registers the routing map pattern
+        /// </summary>
+        /// <param name="routingMap">A string with the routing map pattern</param>
+        /// <remarks>Format: {controller}/{method}/{id (optional)}</remarks>
         public void RegisterRoutingMap(string routingMap)
         {
             _routingMapPattern = routingMap;
         }
 
+        /// <summary>
+        /// Initializes the application.
+        /// </summary>
+        /// <param name="name">Name of the application</param>
+        /// <param name="virtualPath">Virtual path of the application</param>
+        /// <param name="physicalPath">Physical path of the application</param>
         public void Init(string name, string virtualPath, string physicalPath)
         {
             VirtualPath = virtualPath;
@@ -197,6 +250,9 @@ namespace Mvc
             task.Wait();
         }
 
+        /// <summary>
+        /// Gets the configuration manager of the application
+        /// </summary>
         public ConfigurationManager ConfigurationManager
         {
             get
@@ -209,6 +265,12 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Returns an error page given the path of the template and the error message
+        /// </summary>
+        /// <param name="path">Path of the view template</param>
+        /// <param name="errorMessage">String with the error message</param>
+        /// <returns>A compiled html view in a string</returns>
         public string Error(string path, string errorMessage)
         {
             byte[] page = File.ReadAllBytes(path);
@@ -216,6 +278,10 @@ namespace Mvc
             return template(new { message = errorMessage });
         }
 
+        /// <summary>
+        /// Listener of the application start event
+        /// </summary>
+        /// <param name="physicalPath">Physical path of the application</param>
         public void OnApplicationStart(string physicalPath)
         {
             var ev = ApplicationStart;
@@ -225,6 +291,10 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Listener of the pre application start event.
+        /// </summary>
+        /// <param name="virtualPath">Virtual path of the application</param>
         public void OnPreApplicationStart(string virtualPath)
         {
             var ev = PreApplicationStart;
@@ -234,17 +304,31 @@ namespace Mvc
             }
         }
 
+        /// <summary>
+        /// Gets the configuration manager as a generic object
+        /// </summary>
+        /// <returns>A generic object with the configuration manager information</returns>
         public object GetConfigurationManager()
         {
             return ConfigurationManager;
         }
 
+        /// <summary>
+        /// Gets the current session of the application.
+        /// </summary>
+        /// <returns>String with the current session.</returns>
         public string GetSession()
         {
             return Session.GetCurrentSession();
         }
 
-
+        /// <summary>
+        /// Executes an action of a controller
+        /// </summary>
+        /// <param name="actionToCall">Dictionary of all the information the application needs to execute a controller
+        /// (request, path, parameters, headers, etc.)</param>
+        /// <returns>A generic object that varies between an ActionResult (if the request was succesfull) or an int
+        /// of an error status code (if not)</returns>
         public object ExecuteControllerAction(Dictionary<string, object> actionToCall)
         {
             bool methodNotAllowed = false;
@@ -299,7 +383,10 @@ namespace Mvc
                                                         break;
                                                     case "jwt":
                                                         user = attribute.AuthorizeAuthToken(app.HttpRequest, ConfigurationManager.ApplicationSecretKey);
-                                                        Headers["Auth-Token"] = user.Token;
+                                                        if (user != null)
+                                                        {
+                                                            Headers["Auth-Token"] = user.Token;
+                                                        }
                                                         break;
                                                     default:
                                                         throw new NotImplementedException("Not implemented for other authentication drivers");
@@ -351,6 +438,10 @@ namespace Mvc
             return (int)404;
         }
 
+        /// <summary>
+        /// Clones this object
+        /// </summary>
+        /// <returns>A PHttpApplication cloned object.</returns>
         public object Clone()
         {
             return this.MemberwiseClone();

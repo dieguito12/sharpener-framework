@@ -1,0 +1,109 @@
+\hypertarget{interface_mvc_1_1_i_action_result}{}\section{Mvc.\+I\+Action\+Result Interface Reference}
+\label{interface_mvc_1_1_i_action_result}\index{Mvc.\+I\+Action\+Result@{Mvc.\+I\+Action\+Result}}
+
+
+Representative interface of the result of a Controller  
+
+
+Inheritance diagram for Mvc.\+I\+Action\+Result\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_mvc_1_1_i_action_result}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Memory\+Stream \hyperlink{interface_mvc_1_1_i_action_result_a7cf7423071384c7b2bac75a5f4d6e25c}{Response} ()
+\begin{DoxyCompactList}\small\item\em Gets the response of the controller in a stream. \end{DoxyCompactList}\item 
+string \hyperlink{interface_mvc_1_1_i_action_result_a8ad08f29bba90dfbe06d7a00465af10a}{Content\+Type} ()
+\begin{DoxyCompactList}\small\item\em Gets the content type of the response. \end{DoxyCompactList}\item 
+int \hyperlink{interface_mvc_1_1_i_action_result_ab6b85ae50597587395df99b972c3d26b}{Code} ()
+\begin{DoxyCompactList}\small\item\em Gets the status code of the response. \end{DoxyCompactList}\item 
+string \hyperlink{interface_mvc_1_1_i_action_result_a036707da116ea300eae90e105b8d1ced}{Redirection} ()
+\begin{DoxyCompactList}\small\item\em Gets the url where the response is going to redirect (if there is any). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative interface of the result of a Controller 
+
+
+
+Definition at line 13 of file Action\+Result.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{interface_mvc_1_1_i_action_result_ab6b85ae50597587395df99b972c3d26b}\label{interface_mvc_1_1_i_action_result_ab6b85ae50597587395df99b972c3d26b}} 
+\index{Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}!Code@{Code}}
+\index{Code@{Code}!Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}}
+\subsubsection{\texorpdfstring{Code()}{Code()}}
+{\footnotesize\ttfamily int Mvc.\+I\+Action\+Result.\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the status code of the response. 
+
+\begin{DoxyReturn}{Returns}
+An int representing the status code
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_mvc_1_1_json_aab9ce2b098ce0b4bfe8ad835a33e71d5}{Mvc.\+Json}, \hyperlink{class_mvc_1_1_view_a7e723a9bafb2f876175d1396c06da062}{Mvc.\+View}, and \hyperlink{class_mvc_1_1_content_a77175a25c002834c59e14cde60719c28}{Mvc.\+Content}.
+
+\mbox{\Hypertarget{interface_mvc_1_1_i_action_result_a8ad08f29bba90dfbe06d7a00465af10a}\label{interface_mvc_1_1_i_action_result_a8ad08f29bba90dfbe06d7a00465af10a}} 
+\index{Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}!Content\+Type@{Content\+Type}}
+\index{Content\+Type@{Content\+Type}!Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}}
+\subsubsection{\texorpdfstring{Content\+Type()}{ContentType()}}
+{\footnotesize\ttfamily string Mvc.\+I\+Action\+Result.\+Content\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the content type of the response. 
+
+\begin{DoxyReturn}{Returns}
+A string representing the content type of the response
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_mvc_1_1_json_aa2572df4640e171276244cbb14070284}{Mvc.\+Json}, \hyperlink{class_mvc_1_1_view_a0b14b3b8e85c97ada45a32dfcc30f157}{Mvc.\+View}, and \hyperlink{class_mvc_1_1_content_a5d384ef7d466dfc88ccf1eb7f10728ad}{Mvc.\+Content}.
+
+\mbox{\Hypertarget{interface_mvc_1_1_i_action_result_a036707da116ea300eae90e105b8d1ced}\label{interface_mvc_1_1_i_action_result_a036707da116ea300eae90e105b8d1ced}} 
+\index{Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}!Redirection@{Redirection}}
+\index{Redirection@{Redirection}!Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}}
+\subsubsection{\texorpdfstring{Redirection()}{Redirection()}}
+{\footnotesize\ttfamily string Mvc.\+I\+Action\+Result.\+Redirection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the url where the response is going to redirect (if there is any). 
+
+\begin{DoxyReturn}{Returns}
+A string representing the redirection url
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_mvc_1_1_json_af8cd874b2a4c9692f0200bde97d40c87}{Mvc.\+Json}, \hyperlink{class_mvc_1_1_view_a6628a16ae93e0269d91413a3a38d0132}{Mvc.\+View}, and \hyperlink{class_mvc_1_1_content_ae4eba27dbea637dc61bc4b681f731545}{Mvc.\+Content}.
+
+\mbox{\Hypertarget{interface_mvc_1_1_i_action_result_a7cf7423071384c7b2bac75a5f4d6e25c}\label{interface_mvc_1_1_i_action_result_a7cf7423071384c7b2bac75a5f4d6e25c}} 
+\index{Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}!Response@{Response}}
+\index{Response@{Response}!Mvc\+::\+I\+Action\+Result@{Mvc\+::\+I\+Action\+Result}}
+\subsubsection{\texorpdfstring{Response()}{Response()}}
+{\footnotesize\ttfamily Memory\+Stream Mvc.\+I\+Action\+Result.\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the response of the controller in a stream. 
+
+\begin{DoxyReturn}{Returns}
+Memory\+Stream that represents the response of the controller.
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_mvc_1_1_json_ae94043bfe0049a44c8b0c61a13b61ac9}{Mvc.\+Json}, \hyperlink{class_mvc_1_1_view_a8a5a1a1990be0c3704b4f3262c503a2a}{Mvc.\+View}, and \hyperlink{class_mvc_1_1_content_aabe147bc684eed8af000906fbfe92b61}{Mvc.\+Content}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Action\+Result.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,157 @@
+\hypertarget{class_mvc_1_1_view}{}\section{Mvc.\+View Class Reference}
+\label{class_mvc_1_1_view}\index{Mvc.\+View@{Mvc.\+View}}
+
+
+Representative class of a custom view.  
+
+
+Inheritance diagram for Mvc.\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mvc_1_1_view}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mvc_1_1_view_a8a3cc05e4b1f355a5668970c7e633e85}{View} (string template, object data, int code, string physical\+Path, \hyperlink{class_mvc_1_1_route}{Route} route)
+\begin{DoxyCompactList}\small\item\em Constructor of \hyperlink{class_mvc_1_1_view}{View} class \end{DoxyCompactList}\item 
+int \hyperlink{class_mvc_1_1_view_a7e723a9bafb2f876175d1396c06da062}{Code} ()
+\begin{DoxyCompactList}\small\item\em Gets the status code of the response. \end{DoxyCompactList}\item 
+Memory\+Stream \hyperlink{class_mvc_1_1_view_a8a5a1a1990be0c3704b4f3262c503a2a}{Response} ()
+\begin{DoxyCompactList}\small\item\em Gets the response of the controller in a stream. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_view_a0b14b3b8e85c97ada45a32dfcc30f157}{Content\+Type} ()
+\begin{DoxyCompactList}\small\item\em Gets the content type of the response. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_view_a6628a16ae93e0269d91413a3a38d0132}{Redirection} ()
+\begin{DoxyCompactList}\small\item\em Gets the url where the response is going to redirect (if there is any). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of a custom view. 
+
+
+
+Definition at line 14 of file View.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_view_a8a3cc05e4b1f355a5668970c7e633e85}\label{class_mvc_1_1_view_a8a3cc05e4b1f355a5668970c7e633e85}} 
+\index{Mvc\+::\+View@{Mvc\+::\+View}!View@{View}}
+\index{View@{View}!Mvc\+::\+View@{Mvc\+::\+View}}
+\subsubsection{\texorpdfstring{View()}{View()}}
+{\footnotesize\ttfamily Mvc.\+View.\+View (\begin{DoxyParamCaption}\item[{string}]{template,  }\item[{object}]{data,  }\item[{int}]{code,  }\item[{string}]{physical\+Path,  }\item[{\hyperlink{class_mvc_1_1_route}{Route}}]{route }\end{DoxyParamCaption})}
+
+
+
+Constructor of \hyperlink{class_mvc_1_1_view}{View} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em template} & A string representing the name of the view template.\\
+\hline
+{\em data} & An object with the data to be passed to the view template.\\
+\hline
+{\em code} & An int representing the status code.\\
+\hline
+{\em physical\+Path} & A string representing the physical path of the App.\\
+\hline
+{\em route} & A \hyperlink{class_mvc_1_1_route}{Route} object representing the information of the route\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 50 of file View.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_view_a7e723a9bafb2f876175d1396c06da062}\label{class_mvc_1_1_view_a7e723a9bafb2f876175d1396c06da062}} 
+\index{Mvc\+::\+View@{Mvc\+::\+View}!Code@{Code}}
+\index{Code@{Code}!Mvc\+::\+View@{Mvc\+::\+View}}
+\subsubsection{\texorpdfstring{Code()}{Code()}}
+{\footnotesize\ttfamily int Mvc.\+View.\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the status code of the response. 
+
+\begin{DoxyReturn}{Returns}
+An int representing the status code
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_ab6b85ae50597587395df99b972c3d26b}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 63 of file View.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_view_a0b14b3b8e85c97ada45a32dfcc30f157}\label{class_mvc_1_1_view_a0b14b3b8e85c97ada45a32dfcc30f157}} 
+\index{Mvc\+::\+View@{Mvc\+::\+View}!Content\+Type@{Content\+Type}}
+\index{Content\+Type@{Content\+Type}!Mvc\+::\+View@{Mvc\+::\+View}}
+\subsubsection{\texorpdfstring{Content\+Type()}{ContentType()}}
+{\footnotesize\ttfamily string Mvc.\+View.\+Content\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the content type of the response. 
+
+\begin{DoxyReturn}{Returns}
+A string representing the content type of the response
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a8ad08f29bba90dfbe06d7a00465af10a}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 84 of file View.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_view_a6628a16ae93e0269d91413a3a38d0132}\label{class_mvc_1_1_view_a6628a16ae93e0269d91413a3a38d0132}} 
+\index{Mvc\+::\+View@{Mvc\+::\+View}!Redirection@{Redirection}}
+\index{Redirection@{Redirection}!Mvc\+::\+View@{Mvc\+::\+View}}
+\subsubsection{\texorpdfstring{Redirection()}{Redirection()}}
+{\footnotesize\ttfamily string Mvc.\+View.\+Redirection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the url where the response is going to redirect (if there is any). 
+
+\begin{DoxyReturn}{Returns}
+A string representing the redirection url
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a036707da116ea300eae90e105b8d1ced}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 93 of file View.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_view_a8a5a1a1990be0c3704b4f3262c503a2a}\label{class_mvc_1_1_view_a8a5a1a1990be0c3704b4f3262c503a2a}} 
+\index{Mvc\+::\+View@{Mvc\+::\+View}!Response@{Response}}
+\index{Response@{Response}!Mvc\+::\+View@{Mvc\+::\+View}}
+\subsubsection{\texorpdfstring{Response()}{Response()}}
+{\footnotesize\ttfamily Memory\+Stream Mvc.\+View.\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the response of the controller in a stream. 
+
+\begin{DoxyReturn}{Returns}
+Memory\+Stream that represents the response of the controller.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a7cf7423071384c7b2bac75a5f4d6e25c}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 72 of file View.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/View.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,153 @@
+\hypertarget{class_mvc_1_1_content}{}\section{Mvc.\+Content Class Reference}
+\label{class_mvc_1_1_content}\index{Mvc.\+Content@{Mvc.\+Content}}
+
+
+Representative class of a raw content (or redirection) response of a controller  
+
+
+Inheritance diagram for Mvc.\+Content\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mvc_1_1_content}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mvc_1_1_content_aabb482c66606b1eff2ac79ce3558c175}{Content} (string text, int code, string redirect)
+\begin{DoxyCompactList}\small\item\em Constructor of the \hyperlink{class_mvc_1_1_content}{Content} class \end{DoxyCompactList}\item 
+int \hyperlink{class_mvc_1_1_content_a77175a25c002834c59e14cde60719c28}{Code} ()
+\begin{DoxyCompactList}\small\item\em Gets the status code of the response. \end{DoxyCompactList}\item 
+Memory\+Stream \hyperlink{class_mvc_1_1_content_aabe147bc684eed8af000906fbfe92b61}{Response} ()
+\begin{DoxyCompactList}\small\item\em Gets the response of the controller in a stream. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_content_a5d384ef7d466dfc88ccf1eb7f10728ad}{Content\+Type} ()
+\begin{DoxyCompactList}\small\item\em Gets the content type of the response. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_content_ae4eba27dbea637dc61bc4b681f731545}{Redirection} ()
+\begin{DoxyCompactList}\small\item\em Gets the url where the response is going to redirect (if there is any). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of a raw content (or redirection) response of a controller 
+
+
+
+Definition at line 13 of file Content.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_content_aabb482c66606b1eff2ac79ce3558c175}\label{class_mvc_1_1_content_aabb482c66606b1eff2ac79ce3558c175}} 
+\index{Mvc\+::\+Content@{Mvc\+::\+Content}!Content@{Content}}
+\index{Content@{Content}!Mvc\+::\+Content@{Mvc\+::\+Content}}
+\subsubsection{\texorpdfstring{Content()}{Content()}}
+{\footnotesize\ttfamily Mvc.\+Content.\+Content (\begin{DoxyParamCaption}\item[{string}]{text,  }\item[{int}]{code,  }\item[{string}]{redirect }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \hyperlink{class_mvc_1_1_content}{Content} class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & A string of raw text of the response\\
+\hline
+{\em code} & An int representing the status code\\
+\hline
+{\em redirect} & A string representing the redirection url\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file Content.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_content_a77175a25c002834c59e14cde60719c28}\label{class_mvc_1_1_content_a77175a25c002834c59e14cde60719c28}} 
+\index{Mvc\+::\+Content@{Mvc\+::\+Content}!Code@{Code}}
+\index{Code@{Code}!Mvc\+::\+Content@{Mvc\+::\+Content}}
+\subsubsection{\texorpdfstring{Code()}{Code()}}
+{\footnotesize\ttfamily int Mvc.\+Content.\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the status code of the response. 
+
+\begin{DoxyReturn}{Returns}
+An int representing the status code
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_ab6b85ae50597587395df99b972c3d26b}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 47 of file Content.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_content_a5d384ef7d466dfc88ccf1eb7f10728ad}\label{class_mvc_1_1_content_a5d384ef7d466dfc88ccf1eb7f10728ad}} 
+\index{Mvc\+::\+Content@{Mvc\+::\+Content}!Content\+Type@{Content\+Type}}
+\index{Content\+Type@{Content\+Type}!Mvc\+::\+Content@{Mvc\+::\+Content}}
+\subsubsection{\texorpdfstring{Content\+Type()}{ContentType()}}
+{\footnotesize\ttfamily string Mvc.\+Content.\+Content\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the content type of the response. 
+
+\begin{DoxyReturn}{Returns}
+A string representing the content type of the response
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a8ad08f29bba90dfbe06d7a00465af10a}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 70 of file Content.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_content_ae4eba27dbea637dc61bc4b681f731545}\label{class_mvc_1_1_content_ae4eba27dbea637dc61bc4b681f731545}} 
+\index{Mvc\+::\+Content@{Mvc\+::\+Content}!Redirection@{Redirection}}
+\index{Redirection@{Redirection}!Mvc\+::\+Content@{Mvc\+::\+Content}}
+\subsubsection{\texorpdfstring{Redirection()}{Redirection()}}
+{\footnotesize\ttfamily string Mvc.\+Content.\+Redirection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the url where the response is going to redirect (if there is any). 
+
+\begin{DoxyReturn}{Returns}
+A string representing the redirection url
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a036707da116ea300eae90e105b8d1ced}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 79 of file Content.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_content_aabe147bc684eed8af000906fbfe92b61}\label{class_mvc_1_1_content_aabe147bc684eed8af000906fbfe92b61}} 
+\index{Mvc\+::\+Content@{Mvc\+::\+Content}!Response@{Response}}
+\index{Response@{Response}!Mvc\+::\+Content@{Mvc\+::\+Content}}
+\subsubsection{\texorpdfstring{Response()}{Response()}}
+{\footnotesize\ttfamily Memory\+Stream Mvc.\+Content.\+Response (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the response of the controller in a stream. 
+
+\begin{DoxyReturn}{Returns}
+Memory\+Stream that represents the response of the controller.
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interface_mvc_1_1_i_action_result_a7cf7423071384c7b2bac75a5f4d6e25c}{Mvc.\+I\+Action\+Result}.
+
+
+
+Definition at line 56 of file Content.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Content.\+cs\end{DoxyCompactItemize}

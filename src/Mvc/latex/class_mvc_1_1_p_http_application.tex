@@ -1,0 +1,408 @@
+\hypertarget{class_mvc_1_1_p_http_application}{}\section{Mvc.\+P\+Http\+Application Class Reference}
+\label{class_mvc_1_1_p_http_application}\index{Mvc.\+P\+Http\+Application@{Mvc.\+P\+Http\+Application}}
+
+
+Interface of a Http application hosted in our Web Server.  
+
+
+Inheritance diagram for Mvc.\+P\+Http\+Application\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mvc_1_1_p_http_application}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Name\+Value\+Collection \hyperlink{class_mvc_1_1_p_http_application_ae520dc0bf0c265e6c7114d918f9aa6a0}{Get\+Headers} ()
+\begin{DoxyCompactList}\small\item\em Gets the headers of the app response to the web server \end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_p_http_application_afea25215430e7e6346ba122a10693ed1}{P\+Http\+Application} ()
+\begin{DoxyCompactList}\small\item\em Constructor of the \hyperlink{class_mvc_1_1_p_http_application}{P\+Http\+Application} class. \end{DoxyCompactList}\item 
+void \hyperlink{class_mvc_1_1_p_http_application_a3a4aae05eadf7da66bdd37f96c48f79f}{Register\+Routing\+Map} (string routing\+Map)
+\begin{DoxyCompactList}\small\item\em Registers the routing map pattern \end{DoxyCompactList}\item 
+void \hyperlink{class_mvc_1_1_p_http_application_a79ba7ef50171a93e565f46d5e19ae019}{Init} (string name, string virtual\+Path, string physical\+Path)
+\begin{DoxyCompactList}\small\item\em Initializes the application. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_p_http_application_acb04996af75e14fdfdc1dcacf7a52247}{Error} (string path, string error\+Message)
+\begin{DoxyCompactList}\small\item\em Returns an error page given the path of the template and the error message \end{DoxyCompactList}\item 
+void \hyperlink{class_mvc_1_1_p_http_application_a38a4aec623c570fbd05c9e4c33951a05}{On\+Application\+Start} (string physical\+Path)
+\begin{DoxyCompactList}\small\item\em Listener of the application start event \end{DoxyCompactList}\item 
+void \hyperlink{class_mvc_1_1_p_http_application_af4ab5d8d6f1db0a740617bd686fd0e4a}{On\+Pre\+Application\+Start} (string virtual\+Path)
+\begin{DoxyCompactList}\small\item\em Listener of the pre application start event. \end{DoxyCompactList}\item 
+object \hyperlink{class_mvc_1_1_p_http_application_a9dc63c8a87637cf4ffdf3ec78f3261a2}{Get\+Configuration\+Manager} ()
+\begin{DoxyCompactList}\small\item\em Gets the configuration manager as a generic object \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_p_http_application_a4970faea54350be3fb4575014f7b58ec}{Get\+Session} ()
+\begin{DoxyCompactList}\small\item\em Gets the current session of the application. \end{DoxyCompactList}\item 
+object \hyperlink{class_mvc_1_1_p_http_application_a4de3706c2afcbfb56c98a7ca820f53a7}{Execute\+Controller\+Action} (Dictionary$<$ string, object $>$ action\+To\+Call)
+\begin{DoxyCompactList}\small\item\em Executes an action of a controller \end{DoxyCompactList}\item 
+object \hyperlink{class_mvc_1_1_p_http_application_a9497e9f68b567946aa16f67c9536bb21}{Clone} ()
+\begin{DoxyCompactList}\small\item\em Clones this object \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Name\+Value\+Collection \hyperlink{class_mvc_1_1_p_http_application_aafb61bb03731b040d45a8dab426132fd}{Headers}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the headers of the app response to the web server \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_p_http_application_a6b88e2d6ba56c3e26558310ef17a329d}{Configuration\+Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get, protected set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the path of the application configuration file. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_p_http_application_a49f7f8b5103b1141ab11b0e482af51fa}{Name}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the name of the application.\end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_p_http_application_acc2f12d716e578beb22a506aaf614491}{Physical\+Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the physical path of the application dll. \end{DoxyCompactList}\item 
+string \hyperlink{class_mvc_1_1_p_http_application_a51d755edd9a7c81e6173730c75eae430}{Virtual\+Path}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets or sets the virtual path of the application.\end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_configuration_manager}{Configuration\+Manager} \hyperlink{class_mvc_1_1_p_http_application_a19b5b22d6422a32d76b113fecda86d88}{Configuration\+Manager}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the configuration manager of the application \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+P\+Http.\+Application.\+Pre\+Application\+Start\+Method \hyperlink{class_mvc_1_1_p_http_application_acb22952466023ec2a4a6442866f8fbe9}{Pre\+Application\+Start}
+\begin{DoxyCompactList}\small\item\em Event that is triggered before the application starts \end{DoxyCompactList}\item 
+P\+Http.\+Application.\+Application\+Start\+Method \hyperlink{class_mvc_1_1_p_http_application_a925464a1e616113cb0975ca67c49a591}{Application\+Start}
+\begin{DoxyCompactList}\small\item\em Event that is triggered when the application starts \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface of a Http application hosted in our Web Server. 
+
+
+
+Definition at line 29 of file P\+Http\+Application.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_afea25215430e7e6346ba122a10693ed1}\label{class_mvc_1_1_p_http_application_afea25215430e7e6346ba122a10693ed1}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!P\+Http\+Application@{P\+Http\+Application}}
+\index{P\+Http\+Application@{P\+Http\+Application}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{P\+Http\+Application()}{PHttpApplication()}}
+{\footnotesize\ttfamily Mvc.\+P\+Http\+Application.\+P\+Http\+Application (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \hyperlink{class_mvc_1_1_p_http_application}{P\+Http\+Application} class. 
+
+
+
+Definition at line 172 of file P\+Http\+Application.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a9497e9f68b567946aa16f67c9536bb21}\label{class_mvc_1_1_p_http_application_a9497e9f68b567946aa16f67c9536bb21}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Clone@{Clone}}
+\index{Clone@{Clone}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Clone()}{Clone()}}
+{\footnotesize\ttfamily object Mvc.\+P\+Http\+Application.\+Clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clones this object 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_mvc_1_1_p_http_application}{P\+Http\+Application} cloned object.
+\end{DoxyReturn}
+
+
+Definition at line 445 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_acb04996af75e14fdfdc1dcacf7a52247}\label{class_mvc_1_1_p_http_application_acb04996af75e14fdfdc1dcacf7a52247}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Error@{Error}}
+\index{Error@{Error}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Error()}{Error()}}
+{\footnotesize\ttfamily string Mvc.\+P\+Http\+Application.\+Error (\begin{DoxyParamCaption}\item[{string}]{path,  }\item[{string}]{error\+Message }\end{DoxyParamCaption})}
+
+
+
+Returns an error page given the path of the template and the error message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path of the view template\\
+\hline
+{\em error\+Message} & String with the error message\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A compiled html view in a string
+\end{DoxyReturn}
+
+
+Definition at line 274 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a4de3706c2afcbfb56c98a7ca820f53a7}\label{class_mvc_1_1_p_http_application_a4de3706c2afcbfb56c98a7ca820f53a7}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Execute\+Controller\+Action@{Execute\+Controller\+Action}}
+\index{Execute\+Controller\+Action@{Execute\+Controller\+Action}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Execute\+Controller\+Action()}{ExecuteControllerAction()}}
+{\footnotesize\ttfamily object Mvc.\+P\+Http\+Application.\+Execute\+Controller\+Action (\begin{DoxyParamCaption}\item[{Dictionary$<$ string, object $>$}]{action\+To\+Call }\end{DoxyParamCaption})}
+
+
+
+Executes an action of a controller 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action\+To\+Call} & Dictionary of all the information the application needs to execute a controller (request, path, parameters, headers, etc.)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A generic object that varies between an Action\+Result (if the request was succesfull) or an int of an error status code (if not)
+\end{DoxyReturn}
+
+
+Definition at line 332 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a9dc63c8a87637cf4ffdf3ec78f3261a2}\label{class_mvc_1_1_p_http_application_a9dc63c8a87637cf4ffdf3ec78f3261a2}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Get\+Configuration\+Manager@{Get\+Configuration\+Manager}}
+\index{Get\+Configuration\+Manager@{Get\+Configuration\+Manager}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Get\+Configuration\+Manager()}{GetConfigurationManager()}}
+{\footnotesize\ttfamily object Mvc.\+P\+Http\+Application.\+Get\+Configuration\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the configuration manager as a generic object 
+
+\begin{DoxyReturn}{Returns}
+A generic object with the configuration manager information
+\end{DoxyReturn}
+
+
+Definition at line 311 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_ae520dc0bf0c265e6c7114d918f9aa6a0}\label{class_mvc_1_1_p_http_application_ae520dc0bf0c265e6c7114d918f9aa6a0}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Get\+Headers@{Get\+Headers}}
+\index{Get\+Headers@{Get\+Headers}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Get\+Headers()}{GetHeaders()}}
+{\footnotesize\ttfamily Name\+Value\+Collection Mvc.\+P\+Http\+Application.\+Get\+Headers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the headers of the app response to the web server 
+
+\begin{DoxyReturn}{Returns}
+Name\+Value\+Collection with the headers
+\end{DoxyReturn}
+
+
+Definition at line 100 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a4970faea54350be3fb4575014f7b58ec}\label{class_mvc_1_1_p_http_application_a4970faea54350be3fb4575014f7b58ec}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Get\+Session@{Get\+Session}}
+\index{Get\+Session@{Get\+Session}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Get\+Session()}{GetSession()}}
+{\footnotesize\ttfamily string Mvc.\+P\+Http\+Application.\+Get\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the current session of the application. 
+
+\begin{DoxyReturn}{Returns}
+String with the current session.
+\end{DoxyReturn}
+
+
+Definition at line 320 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a79ba7ef50171a93e565f46d5e19ae019}\label{class_mvc_1_1_p_http_application_a79ba7ef50171a93e565f46d5e19ae019}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Init@{Init}}
+\index{Init@{Init}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Mvc.\+P\+Http\+Application.\+Init (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{string}]{virtual\+Path,  }\item[{string}]{physical\+Path }\end{DoxyParamCaption})}
+
+
+
+Initializes the application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the application\\
+\hline
+{\em virtual\+Path} & Virtual path of the application\\
+\hline
+{\em physical\+Path} & Physical path of the application\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 238 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a38a4aec623c570fbd05c9e4c33951a05}\label{class_mvc_1_1_p_http_application_a38a4aec623c570fbd05c9e4c33951a05}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!On\+Application\+Start@{On\+Application\+Start}}
+\index{On\+Application\+Start@{On\+Application\+Start}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{On\+Application\+Start()}{OnApplicationStart()}}
+{\footnotesize\ttfamily void Mvc.\+P\+Http\+Application.\+On\+Application\+Start (\begin{DoxyParamCaption}\item[{string}]{physical\+Path }\end{DoxyParamCaption})}
+
+
+
+Listener of the application start event 
+
+
+\begin{DoxyParams}{Parameters}
+{\em physical\+Path} & Physical path of the application\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 285 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_af4ab5d8d6f1db0a740617bd686fd0e4a}\label{class_mvc_1_1_p_http_application_af4ab5d8d6f1db0a740617bd686fd0e4a}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!On\+Pre\+Application\+Start@{On\+Pre\+Application\+Start}}
+\index{On\+Pre\+Application\+Start@{On\+Pre\+Application\+Start}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{On\+Pre\+Application\+Start()}{OnPreApplicationStart()}}
+{\footnotesize\ttfamily void Mvc.\+P\+Http\+Application.\+On\+Pre\+Application\+Start (\begin{DoxyParamCaption}\item[{string}]{virtual\+Path }\end{DoxyParamCaption})}
+
+
+
+Listener of the pre application start event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em virtual\+Path} & Virtual path of the application\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 298 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a3a4aae05eadf7da66bdd37f96c48f79f}\label{class_mvc_1_1_p_http_application_a3a4aae05eadf7da66bdd37f96c48f79f}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Register\+Routing\+Map@{Register\+Routing\+Map}}
+\index{Register\+Routing\+Map@{Register\+Routing\+Map}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Register\+Routing\+Map()}{RegisterRoutingMap()}}
+{\footnotesize\ttfamily void Mvc.\+P\+Http\+Application.\+Register\+Routing\+Map (\begin{DoxyParamCaption}\item[{string}]{routing\+Map }\end{DoxyParamCaption})}
+
+
+
+Registers the routing map pattern 
+
+
+\begin{DoxyParams}{Parameters}
+{\em routing\+Map} & A string with the routing map pattern\\
+\hline
+\end{DoxyParams}
+
+
+Format\+: \{controller\}/\{method\}/\{id (optional)\}
+
+Definition at line 227 of file P\+Http\+Application.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a19b5b22d6422a32d76b113fecda86d88}\label{class_mvc_1_1_p_http_application_a19b5b22d6422a32d76b113fecda86d88}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Configuration\+Manager@{Configuration\+Manager}}
+\index{Configuration\+Manager@{Configuration\+Manager}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Configuration\+Manager}{ConfigurationManager}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_configuration_manager}{Configuration\+Manager} Mvc.\+P\+Http\+Application.\+Configuration\+Manager\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the configuration manager of the application 
+
+
+
+Definition at line 257 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a6b88e2d6ba56c3e26558310ef17a329d}\label{class_mvc_1_1_p_http_application_a6b88e2d6ba56c3e26558310ef17a329d}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Configuration\+Path@{Configuration\+Path}}
+\index{Configuration\+Path@{Configuration\+Path}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Configuration\+Path}{ConfigurationPath}}
+{\footnotesize\ttfamily string Mvc.\+P\+Http\+Application.\+Configuration\+Path\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected set]}}
+
+
+
+Gets the path of the application configuration file. 
+
+
+
+Definition at line 109 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_aafb61bb03731b040d45a8dab426132fd}\label{class_mvc_1_1_p_http_application_aafb61bb03731b040d45a8dab426132fd}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Headers@{Headers}}
+\index{Headers@{Headers}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Headers}{Headers}}
+{\footnotesize\ttfamily Name\+Value\+Collection Mvc.\+P\+Http\+Application.\+Headers\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Gets the headers of the app response to the web server 
+
+
+
+Definition at line 85 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a49f7f8b5103b1141ab11b0e482af51fa}\label{class_mvc_1_1_p_http_application_a49f7f8b5103b1141ab11b0e482af51fa}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Name@{Name}}
+\index{Name@{Name}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily string Mvc.\+P\+Http\+Application.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets the name of the application.
+
+String value.
+
+Definition at line 125 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_acc2f12d716e578beb22a506aaf614491}\label{class_mvc_1_1_p_http_application_acc2f12d716e578beb22a506aaf614491}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Physical\+Path@{Physical\+Path}}
+\index{Physical\+Path@{Physical\+Path}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Physical\+Path}{PhysicalPath}}
+{\footnotesize\ttfamily string Mvc.\+P\+Http\+Application.\+Physical\+Path\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets the physical path of the application dll. 
+
+
+
+Definition at line 141 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a51d755edd9a7c81e6173730c75eae430}\label{class_mvc_1_1_p_http_application_a51d755edd9a7c81e6173730c75eae430}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Virtual\+Path@{Virtual\+Path}}
+\index{Virtual\+Path@{Virtual\+Path}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Virtual\+Path}{VirtualPath}}
+{\footnotesize\ttfamily string Mvc.\+P\+Http\+Application.\+Virtual\+Path\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets or sets the virtual path of the application.
+
+String value.
+
+Definition at line 157 of file P\+Http\+Application.\+cs.
+
+
+
+\subsection{Event Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_a925464a1e616113cb0975ca67c49a591}\label{class_mvc_1_1_p_http_application_a925464a1e616113cb0975ca67c49a591}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Application\+Start@{Application\+Start}}
+\index{Application\+Start@{Application\+Start}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Application\+Start}{ApplicationStart}}
+{\footnotesize\ttfamily P\+Http.\+Application.\+Application\+Start\+Method Mvc.\+P\+Http\+Application.\+Application\+Start}
+
+
+
+Event that is triggered when the application starts 
+
+
+
+Definition at line 39 of file P\+Http\+Application.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_p_http_application_acb22952466023ec2a4a6442866f8fbe9}\label{class_mvc_1_1_p_http_application_acb22952466023ec2a4a6442866f8fbe9}} 
+\index{Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}!Pre\+Application\+Start@{Pre\+Application\+Start}}
+\index{Pre\+Application\+Start@{Pre\+Application\+Start}!Mvc\+::\+P\+Http\+Application@{Mvc\+::\+P\+Http\+Application}}
+\subsubsection{\texorpdfstring{Pre\+Application\+Start}{PreApplicationStart}}
+{\footnotesize\ttfamily P\+Http.\+Application.\+Pre\+Application\+Start\+Method Mvc.\+P\+Http\+Application.\+Pre\+Application\+Start}
+
+
+
+Event that is triggered before the application starts 
+
+
+
+Definition at line 34 of file P\+Http\+Application.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/P\+Http\+Application.\+cs\end{DoxyCompactItemize}

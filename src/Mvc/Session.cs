@@ -11,17 +11,38 @@ using System.Xml.Serialization;
 
 namespace Mvc
 {
+    /// <summary>
+    /// Representative class of the unique application session
+    /// </summary>
     public class Session
     {
+        /// <summary>
+        /// Current session of the application
+        /// </summary>
         private static string _session;
 
+        /// <summary>
+        /// Static path of the directory where the sessions of the framework are stored.
+        /// </summary>
         private static string _sessionDirectory = @"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Sessions\";
 
+        /// <summary>
+        /// Verifies if the given session exists
+        /// </summary>
+        /// <param name="session">Session to verify</param>
+        /// <returns>True if exist, false if not.</returns>
         public static bool SessionExists(string session)
         {
             return File.Exists(_sessionDirectory + session);
         }
 
+        /// <summary>
+        /// Refreshes a token
+        /// </summary>
+        /// <param name="days">Amount of days to add to the expiration time</param>
+        /// <param name="secret">Secret key to decode and encode the token</param>
+        /// <param name="incomingToken">The token to refresh</param>
+        /// <returns>The new refreshed token</returns>
         public static string RefreshToken(int days, string secret, string incomingToken)
         {
             JObject json = JObject.Parse(File.ReadAllText(@"C:\Users\dieguito12\Code\sharpener-framework\src\Mvc\Tokens\tokens.json"));
@@ -62,6 +83,10 @@ namespace Mvc
             return newToken;
         }
 
+        /// <summary>
+        /// Deletes all the sessions that has expired
+        /// </summary>
+        /// <param name="secret">Secret key of the application to decode and encode the sessions.</param>
         public static void DeleteExpiredSessions(string secret)
         {
             var sessions = Directory.GetFiles(_sessionDirectory);
@@ -91,12 +116,20 @@ namespace Mvc
             
         }
 
+        /// <summary>
+        /// Gets the current application session.
+        /// </summary>
+        /// <returns>Current session</returns>
         public static string GetCurrentSession()
         {
             return _session;
         }
 
-
+        /// <summary>
+        /// Authenticates the current session
+        /// </summary>
+        /// <param name="secret">Secret key to encode and decode the session</param>
+        /// <returns>The corresponded user of the session, null if is not valid</returns>
         public static User AuthenticateSession(string secret)
         {
             System.IO.StreamReader file = new System.IO.StreamReader(_sessionDirectory + "\\" + _session);
@@ -119,11 +152,20 @@ namespace Mvc
             return new User(values["username"], values["password"]);
         }
 
+        /// <summary>
+        /// Sets a new session.
+        /// </summary>
+        /// <param name="session">Session to set</param>
         public static void SetSession(string session)
         {
             _session = session;
         }
 
+        /// <summary>
+        /// Refreshes the current session.
+        /// </summary>
+        /// <param name="minutes">Minutes to add to the expiration time</param>
+        /// <param name="secret">Secret key to encode and decode the session</param>
         public static void RefreshSession(int minutes, string secret)
         {
             System.IO.StreamReader file = new System.IO.StreamReader(_sessionDirectory + "\\" + _session);
@@ -148,6 +190,12 @@ namespace Mvc
             File.WriteAllText(path, token);
         }
         
+        /// <summary>
+        /// Generates and sets a new session.
+        /// </summary>
+        /// <param name="user">User that will belongs the session</param>
+        /// <param name="secret">Secret key to encode the new session</param>
+        /// <returns>The new generated session.</returns>
         public static string GenerateAuthSession(User user, string secret)
         {
             var now = DateTime.Now.AddMinutes(30);

@@ -1,0 +1,230 @@
+\hypertarget{class_mvc_1_1_base_controller}{}\section{Mvc.\+Base\+Controller Class Reference}
+\label{class_mvc_1_1_base_controller}\index{Mvc.\+Base\+Controller@{Mvc.\+Base\+Controller}}
+
+
+Representative class of a base controller  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_mvc_1_1_base_controller_ae29f489a7f1a4829301aac4c4f762d1d}{Unset\+User} ()
+\begin{DoxyCompactList}\small\item\em Unsets the current user. \end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_base_controller_a5d30ca8bf9e277187b8212fb6b8a8428}{Base\+Controller} ()
+\begin{DoxyCompactList}\small\item\em Constructor of the \hyperlink{class_mvc_1_1_base_controller}{Base\+Controller} class. \end{DoxyCompactList}\item 
+\hyperlink{interface_mvc_1_1_i_action_result}{I\+Action\+Result} \hyperlink{class_mvc_1_1_base_controller_ac13791a92c035d9c60d7193676e88c2c}{Json} (string json, int code)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_mvc_1_1_json}{Json} response \end{DoxyCompactList}\item 
+\hyperlink{interface_mvc_1_1_i_action_result}{I\+Action\+Result} \hyperlink{class_mvc_1_1_base_controller_a391c25d6786a328c92aa81a786786a21}{Content} (string text, int code, string redirect)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_mvc_1_1_content}{Content} response \end{DoxyCompactList}\item 
+\hyperlink{interface_mvc_1_1_i_action_result}{I\+Action\+Result} \hyperlink{class_mvc_1_1_base_controller_a572c7ba4224b5596962be6cd6311fe50}{View} (string template, object data, int code)
+\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{class_mvc_1_1_view}{View} response \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mvc_1_1_http_context}{Http\+Context} \hyperlink{class_mvc_1_1_base_controller_ad7b4a9abd6951cae8d4220a4ccea783d}{Http\+Context}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A context information from the http server. \end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_request}{Request} \hyperlink{class_mvc_1_1_base_controller_a72a2384832ba902229f295157ad71282}{Http\+Request}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The incoming request from the server. \end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_route}{Route} \hyperlink{class_mvc_1_1_base_controller_a860c6d8a5ffdadec5f46d2baeaa20186}{Route}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The current route that is being used. \end{DoxyCompactList}\item 
+Dictionary$<$ string, object $>$ \hyperlink{class_mvc_1_1_base_controller_ac9ec764bde3833c4da076a64b0f3d0cc}{Session}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em A session dictionary to store volatile data. \end{DoxyCompactList}\item 
+\hyperlink{class_mvc_1_1_user}{User} \hyperlink{class_mvc_1_1_base_controller_a441230929ad77f983c662d419474c41a}{User}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets of sets the current user \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Representative class of a base controller 
+
+
+
+Definition at line 16 of file Base\+Controller.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_a5d30ca8bf9e277187b8212fb6b8a8428}\label{class_mvc_1_1_base_controller_a5d30ca8bf9e277187b8212fb6b8a8428}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Base\+Controller@{Base\+Controller}}
+\index{Base\+Controller@{Base\+Controller}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Base\+Controller()}{BaseController()}}
+{\footnotesize\ttfamily Mvc.\+Base\+Controller.\+Base\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor of the \hyperlink{class_mvc_1_1_base_controller}{Base\+Controller} class. 
+
+
+
+Definition at line 124 of file Base\+Controller.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_a391c25d6786a328c92aa81a786786a21}\label{class_mvc_1_1_base_controller_a391c25d6786a328c92aa81a786786a21}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Content@{Content}}
+\index{Content@{Content}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Content()}{Content()}}
+{\footnotesize\ttfamily \hyperlink{interface_mvc_1_1_i_action_result}{I\+Action\+Result} Mvc.\+Base\+Controller.\+Content (\begin{DoxyParamCaption}\item[{string}]{text,  }\item[{int}]{code,  }\item[{string}]{redirect }\end{DoxyParamCaption})}
+
+
+
+Creates a new \hyperlink{class_mvc_1_1_content}{Content} response 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & A string of raw text of the response\\
+\hline
+{\em code} & An int representing the status code\\
+\hline
+{\em redirect} & A string representing the redirection url\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_mvc_1_1_content}{Content} object with the response
+\end{DoxyReturn}
+
+
+Definition at line 157 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_ac13791a92c035d9c60d7193676e88c2c}\label{class_mvc_1_1_base_controller_ac13791a92c035d9c60d7193676e88c2c}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Json@{Json}}
+\index{Json@{Json}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Json()}{Json()}}
+{\footnotesize\ttfamily \hyperlink{interface_mvc_1_1_i_action_result}{I\+Action\+Result} Mvc.\+Base\+Controller.\+Json (\begin{DoxyParamCaption}\item[{string}]{json,  }\item[{int}]{code }\end{DoxyParamCaption})}
+
+
+
+Creates a new \hyperlink{class_mvc_1_1_json}{Json} response 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & A string representing the json to respond.\\
+\hline
+{\em code} & An int representing the status code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_mvc_1_1_json}{Json} object with the response.
+\end{DoxyReturn}
+
+
+Definition at line 145 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_ae29f489a7f1a4829301aac4c4f762d1d}\label{class_mvc_1_1_base_controller_ae29f489a7f1a4829301aac4c4f762d1d}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Unset\+User@{Unset\+User}}
+\index{Unset\+User@{Unset\+User}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Unset\+User()}{UnsetUser()}}
+{\footnotesize\ttfamily void Mvc.\+Base\+Controller.\+Unset\+User (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Unsets the current user. 
+
+
+
+Definition at line 100 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_a572c7ba4224b5596962be6cd6311fe50}\label{class_mvc_1_1_base_controller_a572c7ba4224b5596962be6cd6311fe50}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!View@{View}}
+\index{View@{View}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{View()}{View()}}
+{\footnotesize\ttfamily \hyperlink{interface_mvc_1_1_i_action_result}{I\+Action\+Result} Mvc.\+Base\+Controller.\+View (\begin{DoxyParamCaption}\item[{string}]{template,  }\item[{object}]{data,  }\item[{int}]{code }\end{DoxyParamCaption})}
+
+
+
+Creates a new \hyperlink{class_mvc_1_1_view}{View} response 
+
+
+\begin{DoxyParams}{Parameters}
+{\em template} & A string representing the name of the view template.\\
+\hline
+{\em data} & An object with the data to be passed to the view template.\\
+\hline
+{\em code} & An int representing the status code.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{class_mvc_1_1_view}{View} object with the response data.
+\end{DoxyReturn}
+
+
+Definition at line 169 of file Base\+Controller.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_ad7b4a9abd6951cae8d4220a4ccea783d}\label{class_mvc_1_1_base_controller_ad7b4a9abd6951cae8d4220a4ccea783d}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Http\+Context@{Http\+Context}}
+\index{Http\+Context@{Http\+Context}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Http\+Context}{HttpContext}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_http_context}{Http\+Context} Mvc.\+Base\+Controller.\+Http\+Context\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+A context information from the http server. 
+
+
+
+Definition at line 27 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_a72a2384832ba902229f295157ad71282}\label{class_mvc_1_1_base_controller_a72a2384832ba902229f295157ad71282}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Http\+Request@{Http\+Request}}
+\index{Http\+Request@{Http\+Request}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Http\+Request}{HttpRequest}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_request}{Request} Mvc.\+Base\+Controller.\+Http\+Request\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The incoming request from the server. 
+
+
+
+Definition at line 36 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_a860c6d8a5ffdadec5f46d2baeaa20186}\label{class_mvc_1_1_base_controller_a860c6d8a5ffdadec5f46d2baeaa20186}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Route@{Route}}
+\index{Route@{Route}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Route}{Route}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_route}{Route} Mvc.\+Base\+Controller.\+Route\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The current route that is being used. 
+
+
+
+Definition at line 45 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_ac9ec764bde3833c4da076a64b0f3d0cc}\label{class_mvc_1_1_base_controller_ac9ec764bde3833c4da076a64b0f3d0cc}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!Session@{Session}}
+\index{Session@{Session}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{Session}{Session}}
+{\footnotesize\ttfamily Dictionary$<$string, object$>$ Mvc.\+Base\+Controller.\+Session\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+A session dictionary to store volatile data. 
+
+
+
+Definition at line 54 of file Base\+Controller.\+cs.
+
+\mbox{\Hypertarget{class_mvc_1_1_base_controller_a441230929ad77f983c662d419474c41a}\label{class_mvc_1_1_base_controller_a441230929ad77f983c662d419474c41a}} 
+\index{Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}!User@{User}}
+\index{User@{User}!Mvc\+::\+Base\+Controller@{Mvc\+::\+Base\+Controller}}
+\subsubsection{\texorpdfstring{User}{User}}
+{\footnotesize\ttfamily \hyperlink{class_mvc_1_1_user}{User} Mvc.\+Base\+Controller.\+User\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Gets of sets the current user 
+
+When it is set it is validated if is using the jwt driver
+
+Definition at line 64 of file Base\+Controller.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dieguito12/\+Code/sharpener-\/framework/src/\+Mvc/Base\+Controller.\+cs\end{DoxyCompactItemize}
